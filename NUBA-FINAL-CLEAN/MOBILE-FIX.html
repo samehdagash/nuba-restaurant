@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 תיקון סנכרון למובייל - Nuba Restaurant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #d4af37;
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .alert {
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid #ff4444;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #4caf50, #8bc34a);
+            color: #fff;
+            border: none;
+            padding: 20px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4caf50;
+            color: #4caf50;
+        }
+
+        .info {
+            background: rgba(33, 150, 243, 0.2);
+            border: 1px solid #2196f3;
+            color: #2196f3;
+        }
+
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+            color: #f44336;
+        }
+
+        .log {
+            background: #000;
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 תיקון סנכרון למובייל</h1>
+
+        <div class="alert">
+            ⚠️ בעיה: המערכת לא מסתנכרנת בין מכשירים שונים
+        </div>
+
+        <button onclick="fixMobileSync()">
+            🔧 תקן סנכרון בין מכשירים
+        </button>
+
+        <button onclick="forceRefreshAll()">
+            🔄 כפה רענון על כל המכשירים
+        </button>
+
+        <button onclick="clearAndReload()">
+            🗑️ נקה מטמון ורענן
+        </button>
+
+        <div id="status"></div>
+
+        <div class="log" id="log"></div>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8CoiOsMhq7Zn3iDrfSHfdzHvEZKGZ-Tk",
+            authDomain: "nuba-restaurant.firebaseapp.com",
+            projectId: "nuba-restaurant",
+            storageBucket: "nuba-restaurant.firebasestorage.app",
+            messagingSenderId: "1084628930920",
+            appId: "1:1084628930920:web:68f29b63b0bd65ccc406dd"
+        };
+
+        let db, storage, auth;
+
+        // Initialize Firebase
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            db = firebase.firestore();
+            storage = firebase.storage();
+            auth = firebase.auth();
+
+            // Critical: Enable multi-tab sync
+            db.enablePersistence({
+                synchronizeTabs: true,
+                experimentalTabSynchronization: true
+            }).catch(err => {
+                console.log('Persistence error:', err);
+            });
+
+            addLog('✅ Firebase initialized');
+        } catch (error) {
+            addLog('❌ Firebase error: ' + error.message);
+        }
+
+        // Fix Mobile Sync
+        async function fixMobileSync() {
+            showStatus('⏳ מתקן סנכרון בין מכשירים...', 'info');
+            addLog('Starting mobile sync fix...');
+
+            try {
+                // 1. Sign in anonymously for all devices
+                await auth.signInAnonymously();
+                addLog('✅ Authenticated');
+
+                // 2. Force sync from Firebase (not localStorage)
+                const menuDoc = await db.collection('restaurant').doc('menu').get();
+
+                if (menuDoc.exists) {
+                    const menuData = menuDoc.data();
+
+                    // Clear old localStorage
+                    localStorage.removeItem('menuData');
+
+                    // Save fresh data
+                    localStorage.setItem('menuData', JSON.stringify(menuData));
+                    addLog('✅ Menu data synced from cloud');
+
+                    // 3. Set up real-time listener that works on mobile
+                    const unsubscribe = db.collection('restaurant').doc('menu')
+                        .onSnapshot({
+                            includeMetadataChanges: true
+                        }, (doc) => {
+                            if (doc.exists && !doc.metadata.fromCache) {
+                                const data = doc.data();
+                                localStorage.setItem('menuData', JSON.stringify(data));
+                                addLog('📱 Menu updated from cloud');
+
+                                // Auto-reload on mobile
+                                if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                                    setTimeout(() => {
+                                        location.reload();
+                                    }, 500);
+                                }
+                            }
+                        });
+
+                    // 4. Enable cross-device sync
+                    await db.collection('settings').doc('sync').set({
+                        mobileSync: true,
+                        autoReload: true,
+                        syncInterval: 2000,
+                        forceCloudSync: true,
+                        timestamp: new Date().toISOString()
+                    });
+
+                    addLog('✅ Cross-device sync enabled');
+                }
+
+                // 5. Set up order listeners for mobile
+                db.collection('orders')
+                    .where('status', '==', 'pending')
+                    .onSnapshot((snapshot) => {
+                        snapshot.docChanges().forEach((change) => {
+                            if (change.type === 'added') {
+                                addLog('🔔 New order detected');
+
+                                // Play sound on mobile
+                                try {
+                                    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZURE');
+                                    audio.play();
+                                } catch (e) {
+                                    console.log('Audio play failed:', e);
+                                }
+                            }
+                        });
+                    });
+
+                showStatus('✅ סנכרון בין מכשירים תוקן!', 'success');
+                addLog('✅ Mobile sync fixed successfully');
+
+                setTimeout(() => {
+                    alert('✅ הסנכרון תוקן!\n\nעכשיו רענן את הדף בטלפון ובדוק שוב.');
+                }, 1000);
+
+            } catch (error) {
+                showStatus('❌ שגיאה: ' + error.message, 'error');
+                addLog('❌ Error: ' + error.message);
+            }
+        }
+
+        // Force Refresh All Devices
+        async function forceRefreshAll() {
+            showStatus('⏳ כופה רענון על כל המכשירים...', 'info');
+
+            try {
+                // Send refresh signal to all devices
+                await db.collection('signals').doc('refresh').set({
+                    command: 'refresh',
+                    timestamp: Date.now(),
+                    issued: new Date().toISOString()
+                });
+
+                // Listen for refresh signal
+                db.collection('signals').doc('refresh').onSnapshot(doc => {
+                    if (doc.exists) {
+                        const data = doc.data();
+                        if (data.command === 'refresh') {
+                            addLog('🔄 Refresh signal received');
+                            setTimeout(() => {
+                                location.reload();
+                            }, 1000);
+                        }
+                    }
+                });
+
+                showStatus('✅ אות רענון נשלח לכל המכשירים', 'success');
+                addLog('✅ Refresh signal sent');
+
+            } catch (error) {
+                showStatus('❌ שגיאה: ' + error.message, 'error');
+                addLog('❌ Error: ' + error.message);
+            }
+        }
+
+        // Clear Cache and Reload
+        async function clearAndReload() {
+            showStatus('⏳ מנקה מטמון...', 'info');
+
+            try {
+                // Clear all localStorage
+                localStorage.clear();
+                addLog('✅ LocalStorage cleared');
+
+                // Clear IndexedDB
+                if ('indexedDB' in window) {
+                    const dbs = await indexedDB.databases();
+                    dbs.forEach(db => {
+                        indexedDB.deleteDatabase(db.name);
+                    });
+                    addLog('✅ IndexedDB cleared');
+                }
+
+                // Clear service worker cache
+                if ('serviceWorker' in navigator) {
+                    const registrations = await navigator.serviceWorker.getRegistrations();
+                    for (let registration of registrations) {
+                        registration.unregister();
+                    }
+                    addLog('✅ Service workers cleared');
+                }
+
+                // Get fresh data from Firebase
+                const menuDoc = await db.collection('restaurant').doc('menu').get();
+                if (menuDoc.exists) {
+                    localStorage.setItem('menuData', JSON.stringify(menuDoc.data()));
+                    addLog('✅ Fresh data loaded');
+                }
+
+                showStatus('✅ מטמון נוקה - הדף יתרענן', 'success');
+
+                setTimeout(() => {
+                    location.reload(true);
+                }, 1500);
+
+            } catch (error) {
+                showStatus('❌ שגיאה: ' + error.message, 'error');
+                addLog('❌ Error: ' + error.message);
+            }
+        }
+
+        // Helper functions
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.className = `status ${type}`;
+            status.innerHTML = message;
+        }
+
+        function addLog(message) {
+            const log = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            const entry = `[${time}] ${message}\n`;
+            log.textContent = entry + log.textContent;
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            addLog('System ready');
+
+            // Check if mobile
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                addLog('📱 Mobile device detected');
+                showStatus('📱 מכשיר נייד זוהה', 'info');
+            } else {
+                addLog('💻 Desktop detected');
+                showStatus('💻 מחשב זוהה', 'info');
+            }
+        });
+    </script>
+</body>
+</html>
