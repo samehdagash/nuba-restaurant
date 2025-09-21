@@ -184,10 +184,11 @@
             storage = firebase.storage();
             auth = firebase.auth();
 
-            // CRITICAL: Disable cache completely
+            // CRITICAL: Set minimal cache for better sync
             db.settings({
-                cacheSizeBytes: 1, // Minimal cache
-                synchronizeTabs: true
+                cacheSizeBytes: 1048576, // 1MB - minimum allowed
+                synchronizeTabs: true,
+                experimentalForceLongPolling: true
             });
 
             updateSystemStatus('✅ Firebase connected');
