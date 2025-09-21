@@ -1,0 +1,691 @@
+{
+  "categories": [
+    {
+      "id": "mic-dejun",
+      "name_ro": "Mic Dejun",
+      "name_en": "Breakfast",
+      "items": [
+        {
+          "id": "omleta-cu-branza",
+          "name_ro": "Omletă cu brânză",
+          "name_en": "Omletă cu brânză",
+          "desc_ro": "Ouă, brânză feta, gorgonzola, grana padano, chives, mix de salată 250 g",
+          "desc_en": "Ouă, brânză feta, gorgonzola, grana padano, chives, mix de salată 250 g",
+          "price": 40.0,
+          "weight": "250 g",
+          "available": false,
+          "image": "assets/images/mic-dejun__omleta-cu-branza.jpg"
+        },
+        {
+          "id": "oua-benedict-cu-somon",
+          "name_ro": "Ouă Benedict cu somon",
+          "name_en": "Ouă Benedict cu somon",
+          "desc_ro": "Somon gravlax homemade, ouă poșate, cremă de brânză, pâine artizanală Kopt, avocado, sos olandez, boia afumată, chives, mix de salată, roșii cherry 300 g",
+          "desc_en": "Somon gravlax homemade, ouă poșate, cremă de brânză, pâine artizanală Kopt, avocado, sos olandez, boia afumată, chives, mix de salată, roșii cherry 300 g",
+          "price": 56.0,
+          "weight": "300 g",
+          "available": false,
+          "image": "assets/images/mic-dejun__oua-benedict-cu-somon.jpg"
+        },
+        {
+          "id": "oua-cu-branza-feta-si-cartofi-prajiti",
+          "name_ro": "Ouă cu brânză feta și cartofi prăjiți",
+          "name_en": "Ouă cu brânză feta și cartofi prăjiți",
+          "desc_ro": "Ouă, feta, cartofi prăjiți, crispy bacon, cheddar, chives 300 g",
+          "desc_en": "Ouă, feta, cartofi prăjiți, crispy bacon, cheddar, chives 300 g",
+          "price": 43.0,
+          "weight": "300 g",
+          "available": false,
+          "image": "assets/images/mic-dejun__oua-cu-branza-feta-si-cartofi-prajiti.jpg"
+        },
+        {
+          "id": "toast-cu-oua-posate-si-avocado",
+          "name_ro": "Toast cu ouă poșate și avocado",
+          "name_en": "Toast cu ouă poșate și avocado",
+          "desc_ro": "Pâine artizanală Kopt, ouă, avocado, cremă de brânză, crumble de cartofi, mix de salată, roșii cherry, sos olandez, chives 350 g",
+          "desc_en": "Pâine artizanală Kopt, ouă, avocado, cremă de brânză, crumble de cartofi, mix de salată, roșii cherry, sos olandez, chives 350 g",
+          "price": 45.0,
+          "weight": "350 g",
+          "available": false,
+          "image": "assets/images/mic-dejun__toast-cu-oua-posate-si-avocado.jpg"
+        }
+      ]
+    },
+    {
+      "id": "starters",
+      "name_ro": "Starters",
+      "name_en": "Starters",
+      "items": [
+        {
+          "id": "salata-de-vinete-greceasca",
+          "name_ro": "Salată de vinete grecească",
+          "name_en": "Salată de vinete grecească",
+          "desc_ro": "Salată de vinete coapte, cu ardei copți, usturoi, pătrunjel, pita greceasca 210g",
+          "desc_en": "Salată de vinete coapte, cu ardei copți, usturoi, pătrunjel, pita greceasca 210g",
+          "price": 37.0,
+          "weight": "210 g",
+          "available": true,
+          "image": "assets/images/starters__salata-de-vinete-greceasca.jpg"
+        },
+        {
+          "id": "tzatziki",
+          "name_ro": "Tzatziki",
+          "name_en": "Tzatziki",
+          "desc_ro": "Iaurt grecesc cu castraveți, usturoi și ulei de măsline 150g",
+          "desc_en": "Iaurt grecesc cu castraveți, usturoi și ulei de măsline 150g",
+          "price": 34.0,
+          "weight": "150 g",
+          "available": true,
+          "image": "assets/images/starters__tzatziki.jpg"
+        },
+        {
+          "id": "hummus",
+          "name_ro": "Hummus",
+          "name_en": "Hummus",
+          "desc_ro": "Pastă fină de năut cu tahini, mirodenii orientale si pita greceasca 220g",
+          "desc_en": "Pastă fină de năut cu tahini, mirodenii orientale si pita greceasca 220g",
+          "price": 39.0,
+          "weight": "220 g",
+          "available": true,
+          "image": "assets/images/starters__hummus.jpg"
+        },
+        {
+          "id": "pasta-picanta-de-feta",
+          "name_ro": "Pastă picantă de feta",
+          "name_en": "Pastă picantă de feta",
+          "desc_ro": "Pastă picantă de feta cu ardei copt, usturoi și pita grecească 170g",
+          "desc_en": "Pastă picantă de feta cu ardei copt, usturoi și pita grecească 170g",
+          "price": 44.0,
+          "weight": "170 g",
+          "available": true,
+          "image": "assets/images/starters__pasta-picanta-de-feta.jpg"
+        },
+        {
+          "id": "chiftele-din-naut",
+          "name_ro": "Chiftele din năut",
+          "name_en": "Chiftele din năut",
+          "desc_ro": "Chifteluțe de năut servite cu sos de ardei și tahini 220g",
+          "desc_en": "Chifteluțe de năut servite cu sos de ardei și tahini 220g",
+          "price": 39.0,
+          "weight": "220 g",
+          "available": true,
+          "image": "assets/images/starters__chiftele-din-naut.jpg"
+        },
+        {
+          "id": "feta-cu-busuioc",
+          "name_ro": "Feta cu busuioc",
+          "name_en": "Feta cu busuioc",
+          "desc_ro": "Feta proaspătă cu busuioc verde servit cu pita grecească 150g",
+          "desc_en": "Feta proaspătă cu busuioc verde servit cu pita grecească 150g",
+          "price": 42.0,
+          "weight": "150 g",
+          "available": true,
+          "image": "assets/images/starters__feta-cu-busuioc.jpg"
+        },
+        {
+          "id": "caracatita-prajita-cu-salata-calda",
+          "name_ro": "Caracatită prăjită cu salată caldă",
+          "name_en": "Caracatită prăjită cu salată caldă",
+          "desc_ro": "Salată caldă cu caracatiță prăjită și condimente 200g",
+          "desc_en": "Salată caldă cu caracatiță prăjită și condimente 200g",
+          "price": 59.0,
+          "weight": "200 g",
+          "available": true,
+          "image": "assets/images/starters__caracatita-prajita-cu-salata-calda.jpg"
+        },
+        {
+          "id": "calamari-pane-crocanti",
+          "name_ro": "Calamari pane crocanți",
+          "name_en": "Calamari pane crocanți",
+          "desc_ro": "Calamari pane, crocanți și aurii 200g",
+          "desc_en": "Calamari pane, crocanți și aurii 200g",
+          "price": 52.0,
+          "weight": "200 g",
+          "available": true,
+          "image": "assets/images/starters__calamari-pane-crocanti.jpg"
+        },
+        {
+          "id": "creveti-saganaki",
+          "name_ro": "Creveți saganaki",
+          "name_en": "Creveți saganaki",
+          "desc_ro": "Creveți cu feta și roșii la cuptor, în stil saganaki 260g",
+          "desc_en": "Creveți cu feta și roșii la cuptor, în stil saganaki 260g",
+          "price": 56.0,
+          "weight": "260 g",
+          "available": true,
+          "image": "assets/images/starters__creveti-saganaki.jpg"
+        },
+        {
+          "id": "feta-saganaki",
+          "name_ro": "Feta saganaki",
+          "name_en": "Feta saganaki",
+          "desc_ro": "Feta la cuptor în sos de roșii și ardei kapia 260g",
+          "desc_en": "Feta la cuptor în sos de roșii și ardei kapia 260g",
+          "price": 52.0,
+          "weight": "260 g",
+          "available": true,
+          "image": "assets/images/starters__feta-saganaki.jpg"
+        }
+      ]
+    },
+    {
+      "id": "preparate-clasice-grecesti",
+      "name_ro": "Preparate clasice grecești",
+      "name_en": "Greek Classics",
+      "items": [
+        {
+          "id": "supa-a-la-grec",
+          "name_ro": "Supă a la Grec",
+          "name_en": "Supă a la Grec",
+          "desc_ro": "Supă grecească de pui cu lămâie și orez 300g",
+          "desc_en": "Supă grecească de pui cu lămâie și orez 300g",
+          "price": 42.0,
+          "weight": "300 g",
+          "available": true,
+          "image": "assets/images/preparate-clasice-grecesti__supa-a-la-grec.jpg"
+        },
+        {
+          "id": "moussaka",
+          "name_ro": "Moussaka",
+          "name_en": "Moussaka",
+          "desc_ro": "Straturi de vinete, cartofi și ragù, cu sos bechamel. 350 g",
+          "desc_en": "Straturi de vinete, cartofi și ragù, cu sos bechamel. 350 g",
+          "price": 58.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/preparate-clasice-grecesti__moussaka.jpg"
+        },
+        {
+          "id": "pastitio",
+          "name_ro": "Pastitio",
+          "name_en": "Pastitio",
+          "desc_ro": "Penne cu ragù și bechamel, gratinate la cuptor. 350 g",
+          "desc_en": "Penne cu ragù și bechamel, gratinate la cuptor. 350 g",
+          "price": 58.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/preparate-clasice-grecesti__pastitio.jpg"
+        },
+        {
+          "id": "horiatiki-salata",
+          "name_ro": "Horiatiki salata",
+          "name_en": "Horiatiki salata",
+          "desc_ro": "Salată grecească autentică, cu feta și legume proaspete. 400 g",
+          "desc_en": "Salată grecească autentică, cu feta și legume proaspete. 400 g",
+          "price": 55.0,
+          "weight": "400 g",
+          "available": true,
+          "image": "assets/images/preparate-clasice-grecesti__horiatiki-salata.jpg"
+        }
+      ]
+    },
+    {
+      "id": "preparatele-la-gratar-si-specialitati",
+      "name_ro": "Preparatele la grătar și specialități",
+      "name_en": "Grill & Specials",
+      "items": [
+        {
+          "id": "souvlaki-de-pui-cu-tzatziki-si-pita",
+          "name_ro": "Souvlaki de pui cu tzatziki și pita",
+          "name_en": "Souvlaki de pui cu tzatziki și pita",
+          "desc_ro": "Frigărui de pui cu cartofi prăjiți, tzatziki, salată și pita grecească. 450 g",
+          "desc_en": "Frigărui de pui cu cartofi prăjiți, tzatziki, salată și pita grecească. 450 g",
+          "price": 59.0,
+          "weight": "450 g",
+          "available": true,
+          "image": "assets/images/preparatele-la-gratar-si-specialitati__souvlaki-de-pui-cu-tzatziki-si-pita.jpg"
+        },
+        {
+          "id": "gyros-de-pui-clasic-cu-pita",
+          "name_ro": "Gyros de pui clasic cu pita",
+          "name_en": "Gyros de pui clasic cu pita",
+          "desc_ro": "Gyros de pui cu cartofi prăjiți, tzatziki, salată și pita grecească. 450 g",
+          "desc_en": "Gyros de pui cu cartofi prăjiți, tzatziki, salată și pita grecească. 450 g",
+          "price": 55.0,
+          "weight": "450 g",
+          "available": true,
+          "image": "assets/images/preparatele-la-gratar-si-specialitati__gyros-de-pui-clasic-cu-pita.jpg"
+        },
+        {
+          "id": "gyros-de-porc-traditional",
+          "name_ro": "Gyros de porc tradițional",
+          "name_en": "Gyros de porc tradițional",
+          "desc_ro": "Gyros de porc cu cartofi prăjiți, tzatziki, salată și pita grecească. 450 g",
+          "desc_en": "Gyros de porc cu cartofi prăjiți, tzatziki, salată și pita grecească. 450 g",
+          "price": 58.0,
+          "weight": "450 g",
+          "available": true,
+          "image": "assets/images/preparatele-la-gratar-si-specialitati__gyros-de-porc-traditional.jpg"
+        },
+        {
+          "id": "cotlet-de-porc-la-josper",
+          "name_ro": "Cotlet de porc la Josper",
+          "name_en": "Cotlet de porc la Josper",
+          "desc_ro": "Cotlet de porc cu cartofi și salată de roșii cu măsline. 300 g",
+          "desc_en": "Cotlet de porc cu cartofi și salată de roșii cu măsline. 300 g",
+          "price": 88.0,
+          "weight": "300 g",
+          "available": true,
+          "image": "assets/images/preparatele-la-gratar-si-specialitati__cotlet-de-porc-la-josper.jpg"
+        },
+        {
+          "id": "somon-glazurat-cu-miso",
+          "name_ro": "Somon glazurat cu miso",
+          "name_en": "Somon glazurat cu miso",
+          "desc_ro": "Somon cu orez basmati, pastă miso, avocado, susan, togarashi și microplante. 400 g",
+          "desc_en": "Somon cu orez basmati, pastă miso, avocado, susan, togarashi și microplante. 400 g",
+          "price": 95.0,
+          "weight": "400 g",
+          "available": true,
+          "image": "assets/images/preparatele-la-gratar-si-specialitati__somon-glazurat-cu-miso.jpg"
+        },
+        {
+          "id": "pulpe-de-pui-bio",
+          "name_ro": "Pulpe de pui bio",
+          "name_en": "Pulpe de pui bio",
+          "desc_ro": "Pulpe de pui bio dezosate, cu chimichurri și fulgi de sare. 300 g",
+          "desc_en": "Pulpe de pui bio dezosate, cu chimichurri și fulgi de sare. 300 g",
+          "price": 54.0,
+          "weight": "300 g",
+          "available": true,
+          "image": "assets/images/preparatele-la-gratar-si-specialitati__pulpe-de-pui-bio.jpg"
+        },
+        {
+          "id": "muschi-de-vita-black-angus",
+          "name_ro": "Mușchi de vită Black Angus",
+          "name_en": "Mușchi de vită Black Angus",
+          "desc_ro": "Mușchi de vită Black Angus cu unt de trufe și fulgi de sare. 250 g",
+          "desc_en": "Mușchi de vită Black Angus cu unt de trufe și fulgi de sare. 250 g",
+          "price": 149.0,
+          "weight": "250 g",
+          "available": true,
+          "image": "assets/images/preparatele-la-gratar-si-specialitati__muschi-de-vita-black-angus.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fructe-de-mare-peste",
+      "name_ro": "Fructe de mare & Pește",
+      "name_en": "Seafood & Fish",
+      "items": [
+        {
+          "id": "fructe-de-mare-in-vin-alb-cu-ciabatta",
+          "name_ro": "Fructe de mare în vin alb cu ciabatta",
+          "name_en": "Fructe de mare în vin alb cu ciabatta",
+          "desc_ro": "Mix de fructe de mare în sos de vin alb, servit cu ciabatta cu usturoi. 350 g",
+          "desc_en": "Mix de fructe de mare în sos de vin alb, servit cu ciabatta cu usturoi. 350 g",
+          "price": 89.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/fructe-de-mare-peste__fructe-de-mare-in-vin-alb-cu-ciabatta.jpg"
+        },
+        {
+          "id": "fritto-misto",
+          "name_ro": "Fritto misto",
+          "name_en": "Fritto misto",
+          "desc_ro": "Mix crocant de fructe de mare prăjite, cu sos tartar. 400 g",
+          "desc_en": "Mix crocant de fructe de mare prăjite, cu sos tartar. 400 g",
+          "price": 79.0,
+          "weight": "400 g",
+          "available": true,
+          "image": "assets/images/fructe-de-mare-peste__fritto-misto.jpg"
+        },
+        {
+          "id": "creveti-black-tiger-la-gratar",
+          "name_ro": "Creveți Black Tiger la grătar",
+          "name_en": "Creveți Black Tiger la grătar",
+          "desc_ro": "Creveți Black Tiger cu lămâie, unt și usturoi. 250 g",
+          "desc_en": "Creveți Black Tiger cu lămâie, unt și usturoi. 250 g",
+          "price": 88.0,
+          "weight": "250 g",
+          "available": true,
+          "image": "assets/images/fructe-de-mare-peste__creveti-black-tiger-la-gratar.jpg"
+        },
+        {
+          "id": "caracatita-la-gratar-cu-hummus-picant",
+          "name_ro": "Caracatiță la grătar cu hummus picant",
+          "name_en": "Caracatiță la grătar cu hummus picant",
+          "desc_ro": "Caracatiță la grătar pe pat de ceapă coaptă. 350 g",
+          "desc_en": "Caracatiță la grătar pe pat de ceapă coaptă. 350 g",
+          "price": 135.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/fructe-de-mare-peste__caracatita-la-gratar-cu-hummus-picant.jpg"
+        }
+      ]
+    },
+    {
+      "id": "aperitive",
+      "name_ro": "Aperitive",
+      "name_en": "Appetizers",
+      "items": [
+        {
+          "id": "tartar-de-vita",
+          "name_ro": "Tartar de vită",
+          "name_en": "Tartar de vită",
+          "desc_ro": "Mușchi de vită cu cartof, unt, muștar, tabasco, ou de prepeliță, ceapă și castraveți. 200 g",
+          "desc_en": "Mușchi de vită cu cartof, unt, muștar, tabasco, ou de prepeliță, ceapă și castraveți. 200 g",
+          "price": 96.0,
+          "weight": "200 g",
+          "available": true,
+          "image": "assets/images/aperitive__tartar-de-vita.jpg"
+        },
+        {
+          "id": "edamame-cu-fulgi-de-sare-si-chilli",
+          "name_ro": "Edamame cu fulgi de sare și chilli",
+          "name_en": "Edamame cu fulgi de sare și chilli",
+          "desc_ro": "Edamame aburit cu fulgi de sare și sriracha picantă. 250 g",
+          "desc_en": "Edamame aburit cu fulgi de sare și sriracha picantă. 250 g",
+          "price": 39.0,
+          "weight": "250 g",
+          "available": true,
+          "image": "assets/images/aperitive__edamame-cu-fulgi-de-sare-si-chilli.jpg"
+        }
+      ]
+    },
+    {
+      "id": "paste-risotto",
+      "name_ro": "Paste & Risotto",
+      "name_en": "Pasta & Risotto",
+      "items": [
+        {
+          "id": "spaghetti-carbonara",
+          "name_ro": "Spaghetti Carbonara",
+          "name_en": "Spaghetti Carbonara",
+          "desc_ro": "Spaghete de casă cu ou, guanciale, pecorino romano, piper și grana padano. 350 g",
+          "desc_en": "Spaghete de casă cu ou, guanciale, pecorino romano, piper și grana padano. 350 g",
+          "price": 68.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/paste-risotto__spaghetti-carbonara.jpg"
+        },
+        {
+          "id": "penne-arrabbiata",
+          "name_ro": "Penne Arrabbiata",
+          "name_en": "Penne Arrabbiata",
+          "desc_ro": "Penne cu sos de roșii picant, usturoi, busuioc și ulei de măsline. 350 g",
+          "desc_en": "Penne cu sos de roșii picant, usturoi, busuioc și ulei de măsline. 350 g",
+          "price": 52.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/paste-risotto__penne-arrabbiata.jpg"
+        },
+        {
+          "id": "risotto-nuba-cu-creveti",
+          "name_ro": "Risotto Nuba cu creveți",
+          "name_en": "Risotto Nuba cu creveți",
+          "desc_ro": "Orez arborio cu creveți Black Tiger, unt, grana padano, zucchini, kimchi, vin și chives. 350 g",
+          "desc_en": "Orez arborio cu creveți Black Tiger, unt, grana padano, zucchini, kimchi, vin și chives. 350 g",
+          "price": 75.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/paste-risotto__risotto-nuba-cu-creveti.jpg"
+        }
+      ]
+    },
+    {
+      "id": "burgeri-sandwichuri",
+      "name_ro": "Burgeri & Sandwichuri",
+      "name_en": "Burgers & Sandwiches",
+      "items": [
+        {
+          "id": "nuba-burger",
+          "name_ro": "Nuba Burger",
+          "name_en": "Nuba Burger",
+          "desc_ro": "Antricot de vită cu ou, chiflă, brânză cheddar, salată iceberg, cartofi prăjiți și maioneză picantă. 400 g",
+          "desc_en": "Antricot de vită cu ou, chiflă, brânză cheddar, salată iceberg, cartofi prăjiți și maioneză picantă. 400 g",
+          "price": 74.0,
+          "weight": "400 g",
+          "available": true,
+          "image": "assets/images/burgeri-sandwichuri__nuba-burger.jpg"
+        },
+        {
+          "id": "burger-de-pui",
+          "name_ro": "Burger de pui",
+          "name_en": "Burger de pui",
+          "desc_ro": "Pulpă de pui bio cu chiflă, sos cheddar, sriracha, miere de albine, rucola, cartofi prăjiți, ketchup și sos ranch. 400 g",
+          "desc_en": "Pulpă de pui bio cu chiflă, sos cheddar, sriracha, miere de albine, rucola, cartofi prăjiți, ketchup și sos ranch. 400 g",
+          "price": 69.0,
+          "weight": "400 g",
+          "available": true,
+          "image": "assets/images/burgeri-sandwichuri__burger-de-pui.jpg"
+        },
+        {
+          "id": "blue-burger",
+          "name_ro": "Blue Burger",
+          "name_en": "Blue Burger",
+          "desc_ro": "Antricot de vită cu chiflă, gorgonzola, ketchup, rucola, ceapă crocantă, cartofi prăjiți și maioneză picantă. 400 g",
+          "desc_en": "Antricot de vită cu chiflă, gorgonzola, ketchup, rucola, ceapă crocantă, cartofi prăjiți și maioneză picantă. 400 g",
+          "price": 75.0,
+          "weight": "400 g",
+          "available": true,
+          "image": "assets/images/burgeri-sandwichuri__blue-burger.jpg"
+        }
+      ]
+    },
+    {
+      "id": "salate",
+      "name_ro": "Salate",
+      "name_en": "Salads",
+      "items": [
+        {
+          "id": "salata-proaspata",
+          "name_ro": "Salată proaspătă",
+          "name_en": "Salată proaspătă",
+          "desc_ro": "Mix de roșii, castraveți, ceapă verde și vinegretă. 300 g",
+          "desc_en": "Mix de roșii, castraveți, ceapă verde și vinegretă. 300 g",
+          "price": 38.0,
+          "weight": "300 g",
+          "available": true,
+          "image": "assets/images/salate__salata-proaspata.jpg"
+        },
+        {
+          "id": "salata-caesar-cu-pui",
+          "name_ro": "Salată Caesar cu pui",
+          "name_en": "Salată Caesar cu pui",
+          "desc_ro": "Salată iceberg cu pulpe de pui bio, crutoane, avocado, bacon, roșii cherry, grana padano și dressing cu anșoa. 455 g",
+          "desc_en": "Salată iceberg cu pulpe de pui bio, crutoane, avocado, bacon, roșii cherry, grana padano și dressing cu anșoa. 455 g",
+          "price": 55.0,
+          "weight": "455 g",
+          "available": true,
+          "image": "assets/images/salate__salata-caesar-cu-pui.jpg"
+        },
+        {
+          "id": "salata-caesar-cu-creveti",
+          "name_ro": "Salată Caesar cu creveți",
+          "name_en": "Salată Caesar cu creveți",
+          "desc_ro": "Salată iceberg cu creveți, crutoane, avocado, bacon, roșii cherry, grana padano și dressing cu anșoa. 455 g",
+          "desc_en": "Salată iceberg cu creveți, crutoane, avocado, bacon, roșii cherry, grana padano și dressing cu anșoa. 455 g",
+          "price": 65.0,
+          "weight": "455 g",
+          "available": true,
+          "image": "assets/images/salate__salata-caesar-cu-creveti.jpg"
+        }
+      ]
+    },
+    {
+      "id": "garnituri",
+      "name_ro": "Garnituri",
+      "name_en": "Sides",
+      "items": [
+        {
+          "id": "cartofi-pai",
+          "name_ro": "Cartofi pai",
+          "name_en": "Cartofi pai",
+          "desc_ro": "Cartofi pai proaspeți și crocanți. 180 g",
+          "desc_en": "Cartofi pai proaspeți și crocanți. 180 g",
+          "price": 25.0,
+          "weight": "180 g",
+          "available": true,
+          "image": "assets/images/garnituri__cartofi-pai.jpg"
+        },
+        {
+          "id": "cartofi-pai-cu-usturoi-si-branza-mizithra",
+          "name_ro": "Cartofi pai cu usturoi și brânză mizithra",
+          "name_en": "Cartofi pai cu usturoi și brânză mizithra",
+          "desc_ro": "Cartofi prăjiți cu usturoi, mizithra și pătrunjel. 180 g",
+          "desc_en": "Cartofi prăjiți cu usturoi, mizithra și pătrunjel. 180 g",
+          "price": 27.0,
+          "weight": "180 g",
+          "available": true,
+          "image": "assets/images/garnituri__cartofi-pai-cu-usturoi-si-branza-mizithra.jpg"
+        },
+        {
+          "id": "legume-la-gratar-cu-pesto-de-busuioc",
+          "name_ro": "Legume la grătar cu pesto de busuioc",
+          "name_en": "Legume la grătar cu pesto de busuioc",
+          "desc_ro": "Dovlecei, vinete, ardei și ciuperci cu pesto de busuioc și nuci. 180 g",
+          "desc_en": "Dovlecei, vinete, ardei și ciuperci cu pesto de busuioc și nuci. 180 g",
+          "price": 31.0,
+          "weight": "180 g",
+          "available": true,
+          "image": "assets/images/garnituri__legume-la-gratar-cu-pesto-de-busuioc.jpg"
+        },
+        {
+          "id": "sfecla-rosie-cu-iaurt-si-nuci",
+          "name_ro": "Sfeclă roșie cu iaurt și nuci",
+          "name_en": "Sfeclă roșie cu iaurt și nuci",
+          "desc_ro": "Salată de sfeclă roșie cu iaurt, usturoi și nuci. 150 g",
+          "desc_en": "Salată de sfeclă roșie cu iaurt, usturoi și nuci. 150 g",
+          "price": 33.0,
+          "weight": "150 g",
+          "available": true,
+          "image": "assets/images/garnituri__sfecla-rosie-cu-iaurt-si-nuci.jpg"
+        },
+        {
+          "id": "piure-de-cartofi-cu-usturoi-confit",
+          "name_ro": "Piure de cartofi cu usturoi confit",
+          "name_en": "Piure de cartofi cu usturoi confit",
+          "desc_ro": "Piure cremos cu usturoi confit și ulei aromatizat. 200 g",
+          "desc_en": "Piure cremos cu usturoi confit și ulei aromatizat. 200 g",
+          "price": 29.0,
+          "weight": "200 g",
+          "available": true,
+          "image": "assets/images/garnituri__piure-de-cartofi-cu-usturoi-confit.jpg"
+        }
+      ]
+    },
+    {
+      "id": "deserturi",
+      "name_ro": "Deserturi",
+      "name_en": "Desserts",
+      "items": [
+        {
+          "id": "portokalopita",
+          "name_ro": "Portokalopita",
+          "name_en": "Portokalopita",
+          "desc_ro": "Prăjitură grecească cu portocale și lime. 200 g",
+          "desc_en": "Prăjitură grecească cu portocale și lime. 200 g",
+          "price": 42.0,
+          "weight": "200 g",
+          "available": true,
+          "image": "assets/images/deserturi__portokalopita.jpg"
+        },
+        {
+          "id": "tiramisu-with-a-twist",
+          "name_ro": "Tiramisu with a twist",
+          "name_en": "Tiramisu with a twist",
+          "desc_ro": "Tiramisu clasic reinterpretat. 200 g",
+          "desc_en": "Tiramisu clasic reinterpretat. 200 g",
+          "price": 39.0,
+          "weight": "200 g",
+          "available": true,
+          "image": "assets/images/deserturi__tiramisu-with-a-twist.jpg"
+        },
+        {
+          "id": "gogosele-calde",
+          "name_ro": "Gogoșele calde",
+          "name_en": "Gogoșele calde",
+          "desc_ro": "Gogoșele calde cu cremă de vanilie, sos de ciocolată și fructe de pădure. 200 g",
+          "desc_en": "Gogoșele calde cu cremă de vanilie, sos de ciocolată și fructe de pădure. 200 g",
+          "price": 42.0,
+          "weight": "200 g",
+          "available": true,
+          "image": "assets/images/deserturi__gogosele-calde.jpg"
+        }
+      ]
+    },
+    {
+      "id": "pinsa-romana",
+      "name_ro": "Pinsa Romana",
+      "name_en": "Roman Pinsa",
+      "items": [
+        {
+          "id": "margherita",
+          "name_ro": "Margherita",
+          "name_en": "Margherita",
+          "desc_ro": "Blat pinsa cu sos de roșii, mozzarella și busuioc proaspăt. 350 g",
+          "desc_en": "Blat pinsa cu sos de roșii, mozzarella și busuioc proaspăt. 350 g",
+          "price": 49.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/pinsa-romana__margherita.jpg"
+        },
+        {
+          "id": "quattro-formaggi",
+          "name_ro": "Quattro Formaggi",
+          "name_en": "Quattro Formaggi",
+          "desc_ro": "Blat pinsa cu sos de roșii, mozzarella, gorgonzola, parmezan și cremă de brânză. 350 g",
+          "desc_en": "Blat pinsa cu sos de roșii, mozzarella, gorgonzola, parmezan și cremă de brânză. 350 g",
+          "price": 64.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/pinsa-romana__quattro-formaggi.jpg"
+        },
+        {
+          "id": "bresaola",
+          "name_ro": "Bresaola",
+          "name_en": "Bresaola",
+          "desc_ro": "Blat pinsa cu sos de roșii, mozzarella, bresaola, cremă de brânză și parmezan. 350 g",
+          "desc_en": "Blat pinsa cu sos de roșii, mozzarella, bresaola, cremă de brânză și parmezan. 350 g",
+          "price": 67.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/pinsa-romana__bresaola.jpg"
+        },
+        {
+          "id": "diavola",
+          "name_ro": "Diavola",
+          "name_en": "Diavola",
+          "desc_ro": "Blat pinsa cu sos de roșii, mozzarella și salam picant. 350 g",
+          "desc_en": "Blat pinsa cu sos de roșii, mozzarella și salam picant. 350 g",
+          "price": 59.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/pinsa-romana__diavola.jpg"
+        },
+        {
+          "id": "nuba-signature",
+          "name_ro": "Nuba Signature",
+          "name_en": "Nuba Signature",
+          "desc_ro": "Blat pinsa cu sos de roșii, mozzarella, prosciutto, măsline, ciuperci și cârnați. 350 g",
+          "desc_en": "Blat pinsa cu sos de roșii, mozzarella, prosciutto, măsline, ciuperci și cârnați. 350 g",
+          "price": 62.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/pinsa-romana__nuba-signature.jpg"
+        },
+        {
+          "id": "salsiccia",
+          "name_ro": "Salsiccia",
+          "name_en": "Salsiccia",
+          "desc_ro": "Blat pinsa cu sos de roșii, salsiccia, ciuperci și anghinare. 350g",
+          "desc_en": "Blat pinsa cu sos de roșii, salsiccia, ciuperci și anghinare. 350g",
+          "price": 63.0,
+          "weight": "350 g",
+          "available": true,
+          "image": "assets/images/pinsa-romana__salsiccia.jpg"
+        }
+      ]
+    }
+  ],
+  "restaurant": {
+    "name": "Nuba Palas",
+    "currency": "RON",
+    "logo": "NP",
+    "colors": {
+      "primary": "#00f0ff",
+      "secondary": "#7b5cff"
+    }
+  }
+}

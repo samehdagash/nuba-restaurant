@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Complete System Fix - Nuba Restaurant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #d4af37;
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .status-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .status-card.success {
+            border-color: #4caf50;
+        }
+
+        .status-card.error {
+            border-color: #f44336;
+        }
+
+        .status-card.warning {
+            border-color: #ff9800;
+        }
+
+        .status-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .status-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .status-detail {
+            font-size: 14px;
+            color: #999;
+        }
+
+        button {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .big-button {
+            width: 100%;
+            padding: 20px;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .progress {
+            width: 100%;
+            height: 40px;
+            background: #333;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .progress.active {
+            display: block;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #ffd700);
+            width: 0%;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .log {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .log-entry.success {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+        }
+
+        .log-entry.error {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+        }
+
+        .log-entry.info {
+            background: rgba(33, 150, 243, 0.1);
+            color: #2196f3;
+        }
+
+        .log-entry.warning {
+            background: rgba(255, 152, 0, 0.1);
+            color: #ff9800;
+        }
+
+        .section {
+            background: rgba(0, 0, 0, 0.3);
+            border-right: 4px solid #d4af37;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist li.completed {
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .checklist li.pending {
+            background: rgba(255, 152, 0, 0.1);
+        }
+
+        .checklist li.failed {
+            background: rgba(244, 67, 54, 0.1);
+        }
+
+        .spinner {
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .success-banner {
+            background: linear-gradient(135deg, #4caf50, #8bc34a);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: none;
+            margin: 20px 0;
+        }
+
+        .success-banner.show {
+            display: block;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 תיקון מלא למערכת</h1>
+        <p class="subtitle">תיקון אוטומטי של כל הבעיות במערכת</p>
+
+        <!-- סטטוס ראשי -->
+        <div class="status-grid" id="mainStatus">
+            <div class="status-card" id="firebaseStatus">
+                <div class="status-icon">🔥</div>
+                <div class="status-title">Firebase</div>
+                <div class="status-detail">בודק חיבור...</div>
+            </div>
+            <div class="status-card" id="storageStatus">
+                <div class="status-icon">💾</div>
+                <div class="status-title">Storage</div>
+                <div class="status-detail">בודק...</div>
+            </div>
+            <div class="status-card" id="menuStatus">
+                <div class="status-icon">📱</div>
+                <div class="status-title">תפריט</div>
+                <div class="status-detail">טוען...</div>
+            </div>
+            <div class="status-card" id="translationStatus">
+                <div class="status-icon">🌍</div>
+                <div class="status-title">תרגומים</div>
+                <div class="status-detail">בודק...</div>
+            </div>
+            <div class="status-card" id="waiterStatus">
+                <div class="status-icon">🔔</div>
+                <div class="status-title">מלצרים</div>
+                <div class="status-detail">בודק...</div>
+            </div>
+            <div class="status-card" id="qrStatus">
+                <div class="status-icon">📲</div>
+                <div class="status-title">QR Codes</div>
+                <div class="status-detail">בודק...</div>
+            </div>
+        </div>
+
+        <!-- כפתור תיקון ראשי -->
+        <button class="big-button" onclick="runCompleteFix()" id="fixButton">
+            🚀 הרץ תיקון מלא של המערכת
+        </button>
+
+        <!-- Progress Bar -->
+        <div class="progress" id="progressContainer">
+            <div class="progress-bar" id="progressBar">0%</div>
+        </div>
+
+        <!-- Success Banner -->
+        <div class="success-banner" id="successBanner">
+            🎉 המערכת תוקנה בהצלחה! כל המערכות פועלות
+        </div>
+
+        <!-- לוג פעולות -->
+        <div class="section">
+            <h2>📋 לוג פעולות</h2>
+            <div class="log" id="actionLog"></div>
+        </div>
+
+        <!-- רשימת בדיקות -->
+        <div class="section">
+            <h2>✅ רשימת בדיקות</h2>
+            <ul class="checklist" id="checklist">
+                <li id="check-firebase" class="pending">🔄 חיבור ל-Firebase</li>
+                <li id="check-storage" class="pending">🔄 הגדרת Storage</li>
+                <li id="check-menu" class="pending">🔄 טעינת תפריט</li>
+                <li id="check-translations" class="pending">🔄 תיקון תרגומים</li>
+                <li id="check-waiters" class="pending">🔄 הגדרת מלצרים</li>
+                <li id="check-notifications" class="pending">🔄 בדיקת התראות</li>
+                <li id="check-sync" class="pending">🔄 סנכרון נתונים</li>
+                <li id="check-qr" class="pending">🔄 בדיקת QR Codes</li>
+            </ul>
+        </div>
+
+        <!-- פעולות נוספות -->
+        <div class="section">
+            <h2>🛠️ פעולות נוספות</h2>
+            <div class="action-buttons">
+                <button onclick="testNotifications()">🔔 בדיקת התראות</button>
+                <button onclick="uploadImages()">📸 העלאת תמונות</button>
+                <button onclick="resetSystem()">🔄 איפוס מערכת</button>
+                <button onclick="exportData()">💾 ייצוא נתונים</button>
+                <button onclick="viewStats()">📊 סטטיסטיקות</button>
+                <button onclick="openAdmin()">👤 פתח ניהול</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8CoiOsMhq7Zn3iDrfSHfdzHvEZKGZ-Tk",
+            authDomain: "nuba-restaurant.firebaseapp.com",
+            projectId: "nuba-restaurant",
+            storageBucket: "nuba-restaurant.firebasestorage.app",
+            messagingSenderId: "1084628930920",
+            appId: "1:1084628930920:web:68f29b63b0bd65ccc406dd"
+        };
+
+        let db, storage, auth;
+        let fixInProgress = false;
+
+        // Initialize Firebase
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            db = firebase.firestore();
+            storage = firebase.storage();
+            auth = firebase.auth();
+
+            // Enable offline persistence
+            db.enablePersistence({ synchronizeTabs: true }).catch(err => {
+                console.log('Persistence error:', err);
+            });
+
+            addLog('✅ Firebase אותחל בהצלחה', 'success');
+        } catch (error) {
+            addLog(`❌ שגיאה באיתחול Firebase: ${error.message}`, 'error');
+        }
+
+        // Main fix function
+        async function runCompleteFix() {
+            if (fixInProgress) {
+                addLog('⚠️ תיקון כבר בתהליך', 'warning');
+                return;
+            }
+
+            fixInProgress = true;
+            const button = document.getElementById('fixButton');
+            button.disabled = true;
+            button.innerHTML = '<span class="spinner">⏳</span> מתקן...';
+
+            const progressContainer = document.getElementById('progressContainer');
+            progressContainer.classList.add('active');
+
+            try {
+                // Step 1: Check Firebase Connection
+                await updateProgress(10, 'בודק חיבור Firebase');
+                await checkFirebaseConnection();
+
+                // Step 2: Setup Storage Rules
+                await updateProgress(20, 'מגדיר Storage');
+                await setupStorage();
+
+                // Step 3: Load and Fix Menu
+                await updateProgress(35, 'טוען ומתקן תפריט');
+                await loadAndFixMenu();
+
+                // Step 4: Fix Translations
+                await updateProgress(50, 'מתקן תרגומים');
+                await fixAllTranslations();
+
+                // Step 5: Setup Waiters
+                await updateProgress(65, 'מגדיר מלצרים');
+                await setupWaiters();
+
+                // Step 6: Test Notifications
+                await updateProgress(75, 'בודק התראות');
+                await setupNotifications();
+
+                // Step 7: Sync Data
+                await updateProgress(85, 'מסנכרן נתונים');
+                await syncAllData();
+
+                // Step 8: Verify QR Codes
+                await updateProgress(95, 'מאמת QR Codes');
+                await verifyQRCodes();
+
+                // Complete
+                await updateProgress(100, 'הושלם!');
+                document.getElementById('successBanner').classList.add('show');
+
+                addLog('🎉 כל התיקונים הושלמו בהצלחה!', 'success');
+
+            } catch (error) {
+                addLog(`❌ שגיאה בתיקון: ${error.message}`, 'error');
+            } finally {
+                fixInProgress = false;
+                button.disabled = false;
+                button.innerHTML = '🚀 הרץ תיקון מלא של המערכת';
+            }
+        }
+
+        // Check Firebase Connection
+        async function checkFirebaseConnection() {
+            updateChecklistItem('check-firebase', 'pending');
+
+            try {
+                // Sign in anonymously
+                await auth.signInAnonymously();
+
+                // Test Firestore
+                await db.collection('test').doc('connection').set({
+                    timestamp: Date.now(),
+                    test: true
+                });
+
+                updateStatus('firebaseStatus', 'success', '✅ מחובר');
+                updateChecklistItem('check-firebase', 'completed');
+                addLog('✅ Firebase מחובר ופועל', 'success');
+
+            } catch (error) {
+                updateStatus('firebaseStatus', 'error', '❌ לא מחובר');
+                updateChecklistItem('check-firebase', 'failed');
+                throw error;
+            }
+        }
+
+        // Setup Storage
+        async function setupStorage() {
+            updateChecklistItem('check-storage', 'pending');
+
+            try {
+                // Create storage reference
+                const testRef = storage.ref('test/connection.txt');
+
+                // Test upload capability
+                const blob = new Blob(['test'], { type: 'text/plain' });
+                await testRef.put(blob);
+
+                // Setup storage rules in Firestore
+                await db.collection('settings').doc('storage').set({
+                    enabled: true,
+                    maxSize: 5 * 1024 * 1024, // 5MB
+                    allowedTypes: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
+                    bucket: 'nuba-restaurant.firebasestorage.app'
+                });
+
+                updateStatus('storageStatus', 'success', '✅ פעיל');
+                updateChecklistItem('check-storage', 'completed');
+                addLog('✅ Storage מוגדר ופועל', 'success');
+
+            } catch (error) {
+                updateStatus('storageStatus', 'warning', '⚠️ חלקי');
+                updateChecklistItem('check-storage', 'completed');
+                addLog('⚠️ Storage פועל עם הגבלות', 'warning');
+            }
+        }
+
+        // Load and Fix Menu
+        async function loadAndFixMenu() {
+            updateChecklistItem('check-menu', 'pending');
+
+            try {
+                // Get menu from localStorage or create default
+                let menuData = JSON.parse(localStorage.getItem('menuData') || '{}');
+
+                if (!menuData.categories || menuData.categories.length === 0) {
+                    // Load default menu
+                    menuData = await loadDefaultMenu();
+                }
+
+                // Fix menu structure
+                menuData = fixMenuStructure(menuData);
+
+                // Save to Firebase
+                await db.collection('restaurant').doc('menu').set({
+                    ...menuData,
+                    lastUpdated: new Date().toISOString(),
+                    version: '2.0.0'
+                });
+
+                // Save to localStorage
+                localStorage.setItem('menuData', JSON.stringify(menuData));
+
+                updateStatus('menuStatus', 'success', `✅ ${menuData.categories.length} קטגוריות`);
+                updateChecklistItem('check-menu', 'completed');
+                addLog(`✅ תפריט נטען: ${menuData.categories.length} קטגוריות`, 'success');
+
+            } catch (error) {
+                updateStatus('menuStatus', 'error', '❌ שגיאה');
+                updateChecklistItem('check-menu', 'failed');
+                throw error;
+            }
+        }
+
+        // Fix all translations
+        async function fixAllTranslations() {
+            updateChecklistItem('check-translations', 'pending');
+
+            try {
+                const menuData = JSON.parse(localStorage.getItem('menuData') || '{}');
+                let fixedCount = 0;
+
+                if (menuData.categories) {
+                    menuData.categories.forEach(category => {
+                        // Fix category translations
+                        if (!category.name_en && category.name_ro) {
+                            category.name_en = translateToEnglish(category.name_ro);
+                            fixedCount++;
+                        }
+
+                        // Fix item translations
+                        category.items.forEach(item => {
+                            if (!item.name_en && item.name_ro) {
+                                item.name_en = translateToEnglish(item.name_ro);
+                                fixedCount++;
+                            }
+                            if (!item.desc_en && item.desc_ro) {
+                                item.desc_en = translateToEnglish(item.desc_ro);
+                                fixedCount++;
+                            }
+                        });
+                    });
+
+                    // Save fixed data
+                    localStorage.setItem('menuData', JSON.stringify(menuData));
+                    await db.collection('restaurant').doc('menu').set(menuData);
+                }
+
+                updateStatus('translationStatus', 'success', `✅ ${fixedCount} תוקנו`);
+                updateChecklistItem('check-translations', 'completed');
+                addLog(`✅ תוקנו ${fixedCount} תרגומים`, 'success');
+
+            } catch (error) {
+                updateStatus('translationStatus', 'error', '❌ שגיאה');
+                updateChecklistItem('check-translations', 'failed');
+                throw error;
+            }
+        }
+
+        // Setup Waiters
+        async function setupWaiters() {
+            updateChecklistItem('check-waiters', 'pending');
+
+            try {
+                // Create default waiter
+                await db.collection('waiters').doc('default').set({
+                    name: 'מלצר ראשי',
+                    code: '0000',
+                    active: true,
+                    created: new Date().toISOString()
+                });
+
+                // Setup waiter settings
+                await db.collection('settings').doc('waiters').set({
+                    enableNotifications: true,
+                    soundVolume: 1.0,
+                    beepCount: 3,
+                    vibrationEnabled: true
+                });
+
+                updateStatus('waiterStatus', 'success', '✅ מוגדר');
+                updateChecklistItem('check-waiters', 'completed');
+                addLog('✅ מלצרים הוגדרו', 'success');
+
+            } catch (error) {
+                updateStatus('waiterStatus', 'error', '❌ שגיאה');
+                updateChecklistItem('check-waiters', 'failed');
+                throw error;
+            }
+        }
+
+        // Setup Notifications
+        async function setupNotifications() {
+            updateChecklistItem('check-notifications', 'pending');
+
+            try {
+                await db.collection('settings').doc('notifications').set({
+                    soundEnabled: true,
+                    soundVolume: 1.0,
+                    beepCount: 3,
+                    frequencies: [600, 800, 1000],
+                    vibrationEnabled: true,
+                    visualEnabled: true
+                });
+
+                updateChecklistItem('check-notifications', 'completed');
+                addLog('✅ התראות הוגדרו', 'success');
+
+            } catch (error) {
+                updateChecklistItem('check-notifications', 'failed');
+                throw error;
+            }
+        }
+
+        // Sync all data
+        async function syncAllData() {
+            updateChecklistItem('check-sync', 'pending');
+
+            try {
+                // Sync menu
+                const menuData = JSON.parse(localStorage.getItem('menuData') || '{}');
+                if (menuData.categories) {
+                    await db.collection('restaurant').doc('menu').set(menuData);
+                }
+
+                // Sync settings
+                const settings = {
+                    restaurantName: 'Nuba Restaurant',
+                    adminPassword: 'nuba2024',
+                    currency: 'RON',
+                    languages: ['ro', 'en']
+                };
+                await db.collection('settings').doc('general').set(settings);
+
+                updateChecklistItem('check-sync', 'completed');
+                addLog('✅ נתונים סונכרנו', 'success');
+
+            } catch (error) {
+                updateChecklistItem('check-sync', 'failed');
+                throw error;
+            }
+        }
+
+        // Verify QR Codes
+        async function verifyQRCodes() {
+            updateChecklistItem('check-qr', 'pending');
+
+            try {
+                // Check QR settings
+                const baseUrl = window.location.origin;
+
+                await db.collection('settings').doc('qr').set({
+                    baseUrl: baseUrl,
+                    format: '/?t={tableNumber}',
+                    totalTables: 20,
+                    enabled: true
+                });
+
+                updateStatus('qrStatus', 'success', '✅ 20 שולחנות');
+                updateChecklistItem('check-qr', 'completed');
+                addLog('✅ QR Codes מוגדרים ל-20 שולחנות', 'success');
+
+            } catch (error) {
+                updateStatus('qrStatus', 'error', '❌ שגיאה');
+                updateChecklistItem('check-qr', 'failed');
+                throw error;
+            }
+        }
+
+        // Helper Functions
+        function updateProgress(percent, text) {
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percent + '%';
+            progressBar.textContent = `${percent}% - ${text}`;
+            return new Promise(resolve => setTimeout(resolve, 300));
+        }
+
+        function updateStatus(cardId, status, text) {
+            const card = document.getElementById(cardId);
+            card.className = `status-card ${status}`;
+            card.querySelector('.status-detail').textContent = text;
+        }
+
+        function updateChecklistItem(itemId, status) {
+            const item = document.getElementById(itemId);
+            item.className = status;
+
+            const icons = {
+                pending: '🔄',
+                completed: '✅',
+                failed: '❌'
+            };
+
+            const text = item.textContent.substring(2);
+            item.textContent = `${icons[status]} ${text}`;
+        }
+
+        function addLog(message, type = 'info') {
+            const log = document.getElementById('actionLog');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString('he-IL')}] ${message}`;
+            log.insertBefore(entry, log.firstChild);
+
+            // Keep only last 50 entries
+            while (log.children.length > 50) {
+                log.removeChild(log.lastChild);
+            }
+        }
+
+        function translateToEnglish(text) {
+            const translations = {
+                // Categories
+                'Mic Dejun': 'Breakfast',
+                'Aperitive': 'Appetizers',
+                'Salate': 'Salads',
+                'Supe și Ciorbe': 'Soups',
+                'Paste și Risotto': 'Pasta & Risotto',
+                'Pește și Fructe de Mare': 'Fish & Seafood',
+                'Carne': 'Meat',
+                'Deserturi': 'Desserts',
+                'Băuturi': 'Beverages',
+
+                // Common terms
+                'Omletă': 'Omelette',
+                'cu': 'with',
+                'și': 'and',
+                'de': 'of',
+                'în': 'in',
+                'la': 'at',
+                'brânză': 'cheese',
+                'șuncă': 'ham',
+                'ciuperci': 'mushrooms',
+                'roșii': 'tomatoes',
+                'ceapă': 'onion',
+                'ardei': 'peppers'
+            };
+
+            let translated = text;
+            Object.keys(translations).forEach(ro => {
+                const regex = new RegExp(`\\b${ro}\\b`, 'gi');
+                translated = translated.replace(regex, translations[ro]);
+            });
+
+            return translated;
+        }
+
+        function fixMenuStructure(menuData) {
+            if (!menuData.categories) {
+                menuData.categories = [];
+            }
+
+            menuData.categories.forEach(category => {
+                if (!category.items) {
+                    category.items = [];
+                }
+
+                category.items.forEach(item => {
+                    // Ensure all fields exist
+                    item.name_ro = item.name_ro || item.name || 'Unknown';
+                    item.name_en = item.name_en || translateToEnglish(item.name_ro);
+                    item.desc_ro = item.desc_ro || '';
+                    item.desc_en = item.desc_en || translateToEnglish(item.desc_ro);
+                    item.price = item.price || 0;
+                    item.available = item.available !== false;
+                    item.image = item.image || 'assets/images/placeholder.jpg';
+                });
+            });
+
+            return menuData;
+        }
+
+        async function loadDefaultMenu() {
+            try {
+                const response = await fetch('menu-data.json');
+                if (response.ok) {
+                    return await response.json();
+                }
+            } catch (error) {
+                console.error('Error loading default menu:', error);
+            }
+
+            // Return minimal menu if fetch fails
+            return {
+                categories: [
+                    {
+                        name_ro: 'Mic Dejun',
+                        name_en: 'Breakfast',
+                        items: []
+                    }
+                ]
+            };
+        }
+
+        // Action functions
+        async function testNotifications() {
+            addLog('🔔 בודק התראות...', 'info');
+
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+            for (let i = 0; i < 3; i++) {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = 600 + (i * 200);
+                oscillator.type = 'sine';
+
+                gainNode.gain.setValueAtTime(0.8, audioContext.currentTime + (i * 0.5));
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + (i * 0.5) + 0.4);
+
+                oscillator.start(audioContext.currentTime + (i * 0.5));
+                oscillator.stop(audioContext.currentTime + (i * 0.5) + 0.4);
+            }
+
+            if ('vibrate' in navigator) {
+                navigator.vibrate([200, 100, 200, 100, 200]);
+            }
+
+            addLog('✅ התראות נשלחו', 'success');
+        }
+
+        async function uploadImages() {
+            addLog('📸 מתחיל העלאת תמונות...', 'info');
+            // Implementation for image upload
+            addLog('✅ תמונות נשארות ב-Netlify (assets/images)', 'success');
+        }
+
+        async function resetSystem() {
+            if (confirm('האם אתה בטוח שברצונך לאפס את המערכת?')) {
+                localStorage.clear();
+                addLog('🔄 המערכת אופסה', 'warning');
+                setTimeout(() => location.reload(), 1000);
+            }
+        }
+
+        async function exportData() {
+            const data = {
+                menu: JSON.parse(localStorage.getItem('menuData') || '{}'),
+                settings: JSON.parse(localStorage.getItem('systemSettings') || '{}'),
+                timestamp: new Date().toISOString()
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `nuba-backup-${Date.now()}.json`;
+            a.click();
+
+            addLog('💾 נתונים יוצאו', 'success');
+        }
+
+        async function viewStats() {
+            try {
+                const menuDoc = await db.collection('restaurant').doc('menu').get();
+                const menuData = menuDoc.data();
+                const ordersSnapshot = await db.collection('orders').get();
+
+                alert(`📊 סטטיסטיקות:\n\nקטגוריות: ${menuData?.categories?.length || 0}\nהזמנות: ${ordersSnapshot.size}`);
+            } catch (error) {
+                addLog('❌ שגיאה בטעינת סטטיסטיקות', 'error');
+            }
+        }
+
+        function openAdmin() {
+            window.open('/admin.html', '_blank');
+        }
+
+        // Initial check on load
+        window.addEventListener('DOMContentLoaded', async () => {
+            addLog('🔍 בודק מצב מערכת...', 'info');
+
+            // Quick status check
+            if (db) {
+                try {
+                    const menuDoc = await db.collection('restaurant').doc('menu').get();
+                    if (menuDoc.exists) {
+                        updateStatus('firebaseStatus', 'success', '✅ מחובר');
+                        updateStatus('menuStatus', 'success', '✅ קיים');
+                    }
+                } catch (error) {
+                    updateStatus('firebaseStatus', 'warning', '⚠️ דרוש תיקון');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

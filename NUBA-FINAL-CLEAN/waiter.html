@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuba Palas - Comenzi Ospătar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #ffd700;
+            --gold-dark: #b8941f;
+            --black: #000000;
+            --charcoal: #1a1a1a;
+            --gray: #2a2a2a;
+            --white: #ffffff;
+            --success: #4caf50;
+            --danger: #ff4444;
+            --warning: #ff9800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--black) 0%, var(--charcoal) 100%);
+            color: var(--white);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.8));
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--gold);
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--black);
+        }
+
+        h1 {
+            color: var(--gold);
+            font-size: 28px;
+        }
+
+        .sync-status {
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .sync-status.synced {
+            border-color: var(--success);
+        }
+
+        .sync-status.error {
+            border-color: var(--danger);
+        }
+
+        .sync-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gold);
+            animation: pulse 2s infinite;
+        }
+
+        .sync-status.synced .sync-indicator {
+            background: var(--success);
+            animation: none;
+        }
+
+        .sync-status.error .sync-indicator {
+            background: var(--danger);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .badge {
+            background: var(--warning);
+            color: var(--black);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-icon {
+            font-size: 24px;
+            color: var(--gold);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .orders-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .order-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(0, 0, 0, 0.8));
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .order-card.new {
+            border-color: var(--warning);
+            box-shadow: 0 0 20px rgba(255, 152, 0, 0.3);
+        }
+
+        .order-card.completed {
+            opacity: 0.6;
+            border-color: var(--success);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .order-info {
+            flex: 1;
+        }
+
+        .table-number {
+            font-size: 24px;
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .order-time {
+            font-size: 12px;
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background: var(--warning);
+            color: var(--black);
+        }
+
+        .status-preparing {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .status-completed {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .order-items {
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            padding-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .item-name {
+            flex: 1;
+            color: var(--white);
+        }
+
+        .item-quantity {
+            color: var(--gold);
+            font-weight: bold;
+            margin: 0 15px;
+        }
+
+        .item-price {
+            color: var(--gold-light);
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            padding-top: 10px;
+            border-top: 2px solid var(--gold);
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .btn-prepare {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .btn-complete {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-delete {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gold);
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-message {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .empty-submessage {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: var(--gold);
+            color: var(--black);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            .orders-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stats {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .stat-card {
+                flex: 1;
+                min-width: 0;
+                padding: 10px;
+            }
+
+            .stat-value {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">NP</div>
+                <div>
+                    <h1>
+                        <span data-translate="title">Comenzi Ospătar</span>
+                        <span class="badge" id="newOrdersBadge" style="display: none;">NEW</span>
+                    </h1>
+                    <div class="sync-status" id="syncStatus">
+                        <div class="sync-indicator"></div>
+                        <span id="syncText">Connecting...</span>
+                    </div>
+                    <div id="waiterInfo" style="margin-top: 5px; font-size: 14px; color: #d4af37; display: none;">
+                        <i class="fas fa-user"></i> <span id="waiterName"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <i class="fas fa-clock stat-icon"></i>
+                    <div>
+                        <div class="stat-value" id="pendingCount">0</div>
+                        <div class="stat-label" data-translate="pending">În Așteptare</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-fire stat-icon"></i>
+                    <div>
+                        <div class="stat-value" id="preparingCount">0</div>
+                        <div class="stat-label" data-translate="preparing">Se Pregătesc</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-check stat-icon"></i>
+                    <div>
+                        <div class="stat-value" id="completedCount">0</div>
+                        <div class="stat-label" data-translate="completed">Finalizate</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="ro">RO</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-list"></i>
+                <span data-translate="all">Toate</span>
+            </button>
+            <button class="filter-btn" data-filter="pending">
+                <i class="fas fa-clock"></i>
+                <span data-translate="pending">În Așteptare</span>
+            </button>
+            <button class="filter-btn" data-filter="preparing">
+                <i class="fas fa-fire"></i>
+                <span data-translate="preparing">Se Pregătesc</span>
+            </button>
+            <button class="filter-btn" data-filter="completed">
+                <i class="fas fa-check"></i>
+                <span data-translate="completed">Finalizate</span>
+            </button>
+        </div>
+
+        <div class="orders-container" id="ordersContainer">
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <div class="empty-message" data-translate="no_orders">Nu există comenzi</div>
+                <div class="empty-submessage" data-translate="waiting_orders">Așteptăm comenzi noi...</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Firebase Configuration - UPDATED TO NEW PROJECT
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8CoiOsMhq7Zn3iDrfSHfdzHvEZKGZ-Tk",
+            authDomain: "nuba-restaurant.firebaseapp.com",
+            projectId: "nuba-restaurant",
+            storageBucket: "nuba-restaurant.firebasestorage.app",
+            messagingSenderId: "1084628930920",
+            appId: "1:1084628930920:web:68f29b63b0bd65ccc406dd"
+        };
+
+        // Initialize Firebase
+        let db;
+        let isFirebaseActive = false;
+        let unsubscribeOrders = null;
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            isFirebaseActive = true;
+            console.log('✅ Firebase initialized successfully');
+        } catch (error) {
+            console.error('❌ Firebase initialization error:', error);
+            isFirebaseActive = false;
+        }
+
+        // State
+        let orders = [];
+        let currentFilter = 'all';
+        let currentLang = localStorage.getItem('waiterLang') || 'ro';
+        let lastOrderSound = null;
+
+        // Translations
+        const translations = {
+            ro: {
+                title: 'Comenzi Ospătar',
+                pending: 'În Așteptare',
+                preparing: 'Se Pregătesc',
+                completed: 'Finalizate',
+                all: 'Toate',
+                table: 'Masa',
+                total: 'Total',
+                prepare: 'Pregătește',
+                complete: 'Finalizează',
+                delete: 'Șterge',
+                no_orders: 'Nu există comenzi',
+                waiting_orders: 'Așteptăm comenzi noi...',
+                new_order: 'Comandă Nouă!',
+                order_completed: 'Comandă finalizată',
+                synced: 'Sincronizat',
+                syncing: 'Se sincronizează...',
+                offline: 'Mod offline',
+                error: 'Eroare conexiune'
+            },
+            en: {
+                title: 'Waiter Orders',
+                pending: 'Pending',
+                preparing: 'Preparing',
+                completed: 'Completed',
+                all: 'All',
+                table: 'Table',
+                total: 'Total',
+                prepare: 'Prepare',
+                complete: 'Complete',
+                delete: 'Delete',
+                no_orders: 'No orders',
+                waiting_orders: 'Waiting for new orders...',
+                new_order: 'New Order!',
+                order_completed: 'Order completed',
+                synced: 'Synced',
+                syncing: 'Syncing...',
+                offline: 'Offline mode',
+                error: 'Connection error'
+            }
+        };
+
+        // Initialize
+        function init() {
+            setupEventListeners();
+            switchLanguage(currentLang);
+
+            if (isFirebaseActive) {
+                setupFirebaseSync();
+            } else {
+                loadOrdersFromLocalStorage();
+                updateSyncStatus('error');
+                // Fallback to localStorage polling
+                setInterval(checkLocalStorageOrders, 2000);
+            }
+        }
+
+        // Setup Firebase real-time synchronization
+        function setupFirebaseSync() {
+            updateSyncStatus('syncing');
+
+            // Real-time orders listener
+            unsubscribeOrders = db.collection('orders')
+                .orderBy('timestamp', 'desc')
+                .onSnapshot(
+                    (snapshot) => {
+                        const newOrders = [];
+                        snapshot.forEach(doc => {
+                            newOrders.push({
+                                firestoreId: doc.id,
+                                ...doc.data()
+                            });
+                        });
+
+                        // Check for new orders
+                        const previousCount = orders.filter(o => o.status === 'pending').length;
+                        const newCount = newOrders.filter(o => o.status === 'pending').length;
+
+                        if (newCount > previousCount && previousCount >= 0) {
+                            showNewOrderNotification();
+                            playNotificationSound();
+                        }
+
+                        orders = newOrders;
+                        renderOrders();
+                        updateStats();
+                        updateSyncStatus('synced');
+
+                        console.log('📡 Orders synced from Firebase:', orders.length);
+                    },
+                    (error) => {
+                        console.error('Firebase sync error:', error);
+                        updateSyncStatus('error');
+                        // Fallback to localStorage
+                        loadOrdersFromLocalStorage();
+                        setInterval(checkLocalStorageOrders, 2000);
+                    }
+                );
+        }
+
+        // Update sync status
+        function updateSyncStatus(status) {
+            const syncStatus = document.getElementById('syncStatus');
+            const syncText = document.getElementById('syncText');
+
+            syncStatus.className = `sync-status ${status}`;
+
+            switch(status) {
+                case 'synced':
+                    syncText.textContent = translations[currentLang].synced;
+                    break;
+                case 'syncing':
+                    syncText.textContent = translations[currentLang].syncing;
+                    break;
+                case 'error':
+                    syncText.textContent = translations[currentLang].error;
+                    break;
+                default:
+                    syncText.textContent = translations[currentLang].offline;
+            }
+        }
+
+        // Load orders from localStorage (fallback)
+        function loadOrdersFromLocalStorage() {
+            const savedOrders = localStorage.getItem('waiterOrders');
+            if (savedOrders) {
+                orders = JSON.parse(savedOrders);
+                renderOrders();
+                updateStats();
+            }
+        }
+
+        // Check for new orders in localStorage
+        function checkLocalStorageOrders() {
+            const pendingOrders = localStorage.getItem('pendingOrders');
+            if (pendingOrders) {
+                const newOrders = JSON.parse(pendingOrders);
+
+                // Check if these are actually new
+                const previousCount = orders.filter(o => o.status === 'pending').length;
+
+                newOrders.forEach(order => {
+                    if (!orders.find(o => o.id === order.id)) {
+                        orders.unshift(order);
+                    }
+                });
+
+                const newCount = orders.filter(o => o.status === 'pending').length;
+                if (newCount > previousCount) {
+                    showNewOrderNotification();
+                    playNotificationSound();
+                }
+
+                localStorage.removeItem('pendingOrders');
+                saveOrdersToLocalStorage();
+                renderOrders();
+                updateStats();
+            }
+        }
+
+        // Save orders to localStorage
+        function saveOrdersToLocalStorage() {
+            localStorage.setItem('waiterOrders', JSON.stringify(orders));
+        }
+
+        // Render orders
+        function renderOrders() {
+            const container = document.getElementById('ordersContainer');
+
+            let filteredOrders = orders;
+            if (currentFilter !== 'all') {
+                filteredOrders = orders.filter(order => order.status === currentFilter);
+            }
+
+            if (filteredOrders.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="empty-message">${translations[currentLang].no_orders}</div>
+                        <div class="empty-submessage">${translations[currentLang].waiting_orders}</div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredOrders.map(order => {
+                const isNew = order.status === 'pending' &&
+                             new Date() - new Date(order.timestamp) < 60000;
+
+                return `
+                    <div class="order-card ${isNew ? 'new' : ''} ${order.status === 'completed' ? 'completed' : ''}">
+                        <div class="order-header">
+                            <div class="order-info">
+                                <div class="table-number">
+                                    ${translations[currentLang].table} ${order.tableNumber || 'N/A'}
+                                </div>
+                                <div class="order-time">
+                                    ${new Date(order.timestamp).toLocaleTimeString()}
+                                </div>
+                            </div>
+                            <div class="order-status status-${order.status}">
+                                ${translations[currentLang][order.status]}
+                            </div>
+                        </div>
+
+                        <div class="order-items">
+                            ${order.items.map(item => `
+                                <div class="order-item">
+                                    <span class="item-name">
+                                        ${currentLang === 'ro' ? item.name : item.name_en || item.name}
+                                    </span>
+                                    <span class="item-quantity">×${item.quantity}</span>
+                                    <span class="item-price">${item.price * item.quantity} RON</span>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="order-total">
+                            <span>${translations[currentLang].total}:</span>
+                            <span>${order.total} RON</span>
+                        </div>
+
+                        <div class="order-actions">
+                            ${order.status === 'pending' ? `
+                                <button class="action-btn btn-prepare" onclick="updateOrderStatus('${order.firestoreId || order.id}', 'preparing')">
+                                    <i class="fas fa-fire"></i> ${translations[currentLang].prepare}
+                                </button>
+                            ` : ''}
+                            ${order.status === 'preparing' ? `
+                                <button class="action-btn btn-complete" onclick="updateOrderStatus('${order.firestoreId || order.id}', 'completed')">
+                                    <i class="fas fa-check"></i> ${translations[currentLang].complete}
+                                </button>
+                            ` : ''}
+                            ${order.status === 'completed' ? `
+                                <button class="action-btn btn-delete" onclick="deleteOrder('${order.firestoreId || order.id}')">
+                                    <i class="fas fa-trash"></i> ${translations[currentLang].delete}
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Update order status
+        async function updateOrderStatus(orderId, newStatus) {
+            if (isFirebaseActive) {
+                try {
+                    await db.collection('orders').doc(orderId).update({
+                        status: newStatus,
+                        updatedAt: new Date().toISOString()
+                    });
+                    console.log('✅ Order status updated in Firebase');
+                } catch (error) {
+                    console.error('Error updating order:', error);
+                    // Fallback to local update
+                    updateOrderLocally(orderId, newStatus);
+                }
+            } else {
+                updateOrderLocally(orderId, newStatus);
+            }
+        }
+
+        // Update order locally
+        function updateOrderLocally(orderId, newStatus) {
+            const order = orders.find(o => o.id === orderId || o.firestoreId === orderId);
+            if (order) {
+                order.status = newStatus;
+                saveOrdersToLocalStorage();
+                renderOrders();
+                updateStats();
+
+                if (newStatus === 'completed') {
+                    showNotification(translations[currentLang].order_completed);
+                }
+            }
+        }
+
+        // Delete order
+        async function deleteOrder(orderId) {
+            if (isFirebaseActive) {
+                try {
+                    await db.collection('orders').doc(orderId).delete();
+                    console.log('✅ Order deleted from Firebase');
+                } catch (error) {
+                    console.error('Error deleting order:', error);
+                    // Fallback to local delete
+                    deleteOrderLocally(orderId);
+                }
+            } else {
+                deleteOrderLocally(orderId);
+            }
+        }
+
+        // Delete order locally
+        function deleteOrderLocally(orderId) {
+            orders = orders.filter(o => o.id !== orderId && o.firestoreId !== orderId);
+            saveOrdersToLocalStorage();
+            renderOrders();
+            updateStats();
+        }
+
+        // Update statistics
+        function updateStats() {
+            const pending = orders.filter(o => o.status === 'pending').length;
+            const preparing = orders.filter(o => o.status === 'preparing').length;
+            const completed = orders.filter(o => o.status === 'completed').length;
+
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('preparingCount').textContent = preparing;
+            document.getElementById('completedCount').textContent = completed;
+
+            // Show/hide new orders badge
+            const badge = document.getElementById('newOrdersBadge');
+            if (pending > 0) {
+                badge.style.display = 'inline';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Show new order notification
+        function showNewOrderNotification() {
+            showNotification(`🔔 ${translations[currentLang].new_order}`);
+        }
+
+        // Play notification sound - LOUDER WITH 3 BEEPS
+        function playNotificationSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+            // Function to create a single beep
+            function createBeep(startTime, frequency = 800, volume = 0.8) {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = frequency;
+                oscillator.type = 'sine';
+
+                // Louder volume and longer duration
+                gainNode.gain.setValueAtTime(volume, startTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.4);
+
+                oscillator.start(startTime);
+                oscillator.stop(startTime + 0.4);
+            }
+
+            // Play 3 beeps with increasing frequency for urgency
+            createBeep(audioContext.currentTime, 600, 0.7);        // First beep
+            createBeep(audioContext.currentTime + 0.5, 800, 0.8);  // Second beep (louder)
+            createBeep(audioContext.currentTime + 1.0, 1000, 0.9);  // Third beep (loudest)
+
+            // Also vibrate if available (for mobile devices)
+            if ('vibrate' in navigator) {
+                navigator.vibrate([200, 100, 200, 100, 200]);
+            }
+        }
+
+        // Switch language
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('waiterLang', lang);
+
+            // Update button styles
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update all translations
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update sync status
+            const syncStatusElement = document.getElementById('syncStatus');
+            if (syncStatusElement) {
+                const currentStatus = syncStatusElement.className.split(' ')[1];
+                updateSyncStatus(currentStatus);
+            }
+
+            // Re-render orders with new language
+            renderOrders();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Language switcher
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const lang = e.currentTarget.getAttribute('data-lang');
+                    switchLanguage(lang);
+                });
+            });
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const filter = e.currentTarget.getAttribute('data-filter');
+                    currentFilter = filter;
+
+                    // Update button styles
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+
+                    renderOrders();
+                });
+            });
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (unsubscribeOrders) unsubscribeOrders();
+        });
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>

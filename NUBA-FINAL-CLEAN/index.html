@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuba Palas - Restaurant • Lounge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #ffd700;
+            --gold-dark: #b8941f;
+            --black: #000000;
+            --charcoal: #1a1a1a;
+            --gray: #2a2a2a;
+            --white: #ffffff;
+            --cream: #f5f5dc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: linear-gradient(135deg, var(--black) 0%, var(--charcoal) 100%);
+            color: var(--cream);
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.8));
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            backdrop-filter: blur(10px);
+        }
+
+        .luxury-header {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            border: 3px solid var(--gold);
+        }
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--black);
+        }
+
+        .restaurant-name {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .restaurant-subtitle {
+            font-size: 20px;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Table Info */
+        .table-info {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 30px;
+            margin-top: 10px;
+        }
+
+        .table-number {
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        /* Search Section */
+        .search-section {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 30px;
+            color: var(--cream);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+        }
+
+        /* Categories Navigation */
+        .categories-nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--gold);
+            overflow-x: auto;
+        }
+
+        .categories-container {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 5px;
+        }
+
+        .category-btn {
+            padding: 12px 24px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .category-btn.active {
+            background: var(--gold);
+            color: var(--black);
+            font-weight: bold;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 32px;
+            color: var(--gold);
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .category-title::before,
+        .category-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 1px;
+            background: var(--gold);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .category-title::before {
+            left: 20%;
+        }
+
+        .category-title::after {
+            right: 20%;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(0, 0, 0, 0.8));
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .menu-item.unavailable {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .unavailable-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 2;
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(45deg, var(--gray), var(--charcoal));
+        }
+
+        .item-content {
+            padding: 20px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 10px;
+        }
+
+        .item-name {
+            font-size: 20px;
+            color: var(--gold);
+            margin-bottom: 5px;
+            flex: 1;
+        }
+
+        .item-price {
+            font-size: 22px;
+            color: var(--gold-light);
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .item-description {
+            color: var(--cream);
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--black);
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Cart Toggle Button */
+        .cart-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .cart-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-toggle i {
+            font-size: 24px;
+            color: var(--black);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--black) 100%);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-bottom: 1px solid var(--gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-size: 24px;
+            color: var(--gold);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px;
+            color: var(--cream);
+            opacity: 0.6;
+        }
+
+        .cart-empty i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .cart-item {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .cart-item-name {
+            font-size: 18px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quantity-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .quantity {
+            padding: 5px 15px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            color: var(--cream);
+        }
+
+        .cart-item-price {
+            color: var(--gold-light);
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .cart-footer {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-top: 1px solid var(--gold);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .cart-total-label {
+            color: var(--cream);
+        }
+
+        .cart-total-value {
+            color: var(--gold-light);
+            font-weight: bold;
+        }
+
+        .call-waiter-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--black);
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .call-waiter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--gold);
+            color: var(--black);
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 3000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--gold);
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-top: 3px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .restaurant-name {
+                font-size: 32px;
+            }
+
+            .restaurant-subtitle {
+                font-size: 16px;
+            }
+
+            .categories-container {
+                padding: 0 10px;
+            }
+
+            .category-btn {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .category-title::before,
+            .category-title::after {
+                display: none;
+            }
+
+            .cart-toggle {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="ro">RO</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <div class="luxury-header">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="logo.svg" alt="NP" onerror="this.style.display='none'; this.parentElement.innerHTML='NP'" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+            </div>
+            <h1 class="restaurant-name">Nuba Palas</h1>
+            <p class="restaurant-subtitle">Restaurant • Lounge</p>
+            <div class="table-info">
+                <span class="table-number" id="tableNumber"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Caută în meniul nostru exquisit...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+    </section>
+
+    <nav class="categories-nav">
+        <div class="categories-container" id="categoriesNav"></div>
+    </nav>
+
+    <main class="menu-section" id="menuSection"></main>
+
+    <!-- Cart Toggle Button -->
+    <button class="cart-toggle" id="cartToggle">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2 class="cart-title">
+                <i class="fas fa-shopping-bag"></i>
+                <span data-translate="cart">Coș</span>
+            </h2>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-bag"></i>
+                <p data-translate="cart_empty">Coșul tău este gol</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span class="cart-total-label" data-translate="total">Total</span>
+                <span class="cart-total-value" id="cartTotal">0 RON</span>
+            </div>
+            <button class="call-waiter-btn" id="callWaiterBtn">
+                <i class="fas fa-bell-concierge"></i>
+                <span data-translate="call_waiter">Cheamă Chelnerul</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Firebase Configuration - NEW PROJECT
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8CoiOsMhq7Zn3iDrfSHfdzHvEZKGZ-Tk",
+            authDomain: "nuba-restaurant.firebaseapp.com",
+            projectId: "nuba-restaurant",
+            storageBucket: "nuba-restaurant.firebasestorage.app",
+            messagingSenderId: "1084628930920",
+            appId: "1:1084628930920:web:68f29b63b0bd65ccc406dd"
+        };
+
+        // Initialize Firebase
+        let db;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            console.log('✅ Firebase initialized');
+        } catch (error) {
+            console.error('Firebase init error:', error);
+        }
+
+        // Global variables
+        let menuData = { categories: [] };
+        let cart = [];
+        let tableNumber = '';
+        let currentLang = 'ro';
+
+        // Translations
+        const translations = {
+            ro: {
+                available: 'Disponibile',
+                unavailable: 'Indisponibil',
+                add_to_cart: 'Adaugă în Coș',
+                cart: 'Coș',
+                cart_empty: 'Coșul tău este gol',
+                total: 'Total',
+                call_waiter: 'Cheamă Chelnerul',
+                table: 'Masa',
+                search_placeholder: 'Caută în meniul nostru exquisit...',
+                loading: 'Se încarcă...',
+                order_sent: 'Comanda a fost trimisă!'
+            },
+            en: {
+                available: 'Available',
+                unavailable: 'Unavailable',
+                add_to_cart: 'Add to Cart',
+                cart: 'Cart',
+                cart_empty: 'Your cart is empty',
+                total: 'Total',
+                call_waiter: 'Call Waiter',
+                table: 'Table',
+                search_placeholder: 'Search our exquisite menu...',
+                loading: 'Loading...',
+                order_sent: 'Order has been sent!'
+            }
+        };
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeTableNumber();
+            initializeLanguage();
+            initializeEventListeners();
+            loadCartFromLocalStorage();
+            loadMenuData();
+        });
+
+        // Load menu data
+        async function loadMenuData() {
+            showLoading(true);
+
+            try {
+                // Try loading from localStorage first
+                const cachedMenu = localStorage.getItem('menuData');
+                const cacheTimestamp = localStorage.getItem('menuDataTimestamp');
+                const now = Date.now();
+
+                // Use cache if it's less than 5 minutes old
+                if (cachedMenu && cacheTimestamp && (now - parseInt(cacheTimestamp)) < 300000) {
+                    menuData = JSON.parse(cachedMenu);
+                    console.log('Menu loaded from cache');
+                } else {
+                    // Load fresh from JSON
+                    const response = await fetch('menu-data.json');
+                    if (!response.ok) throw new Error('Failed to load menu');
+
+                    menuData = await response.json();
+                    console.log('Menu loaded from JSON:', menuData);
+
+                    // Save to cache
+                    localStorage.setItem('menuData', JSON.stringify(menuData));
+                    localStorage.setItem('menuDataTimestamp', now.toString());
+                }
+
+                displayCategories();
+                displayMenuItems();
+                showLoading(false);
+
+            } catch (error) {
+                console.error('Error loading menu:', error);
+                showLoading(false);
+                showToast('Error loading menu. Please refresh.', 'error');
+            }
+        }
+
+        // Initialize table number from URL
+        function initializeTableNumber() {
+            const urlParams = new URLSearchParams(window.location.search);
+            tableNumber = urlParams.get('t') || '';
+
+            if (tableNumber) {
+                document.getElementById('tableNumber').textContent = `${translations[currentLang].table} ${tableNumber}`;
+                localStorage.setItem('tableNumber', tableNumber);
+            } else {
+                const savedTable = localStorage.getItem('tableNumber');
+                if (savedTable) {
+                    tableNumber = savedTable;
+                    document.getElementById('tableNumber').textContent = `${translations[currentLang].table} ${tableNumber}`;
+                }
+            }
+        }
+
+        // Display categories
+        function displayCategories() {
+            const nav = document.getElementById('categoriesNav');
+            if (!menuData.categories || menuData.categories.length === 0) {
+                nav.innerHTML = '<p style="color: #d4af37;">Nu există categorii</p>';
+                return;
+            }
+
+            nav.innerHTML = menuData.categories.map((category, index) => {
+                const categoryName = currentLang === 'ro' ?
+                    (category.name_ro || category.name) :
+                    (category.name_en || category.name_ro || category.name);
+
+                return `
+                    <button class="category-btn ${index === 0 ? 'active' : ''}"
+                            data-category="${category.id}"
+                            onclick="selectCategory('${category.id}')">
+                        ${categoryName}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        // Select category
+        function selectCategory(categoryId) {
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === categoryId) {
+                    btn.classList.add('active');
+                }
+            });
+            displayMenuItems(categoryId);
+        }
+
+        // Display menu items
+        function displayMenuItems(categoryId = null, searchTerm = '') {
+            const section = document.getElementById('menuSection');
+            if (!menuData.categories || menuData.categories.length === 0) {
+                section.innerHTML = '<p style="text-align: center; color: #d4af37; padding: 40px;">Nu există meniu disponibil</p>';
+                return;
+            }
+
+            let categoriesToShow = menuData.categories;
+
+            if (categoryId && categoryId !== 'all') {
+                categoriesToShow = menuData.categories.filter(cat => cat.id === categoryId);
+            }
+
+            const searchLower = searchTerm.toLowerCase();
+
+            section.innerHTML = categoriesToShow.map(category => {
+                const categoryName = currentLang === 'ro' ?
+                    (category.name_ro || category.name) :
+                    (category.name_en || category.name_ro || category.name);
+
+                const filteredItems = category.items.filter(item => {
+                    if (searchTerm) {
+                        const itemName = currentLang === 'ro' ?
+                            (item.name_ro || item.name || item.name_en) :
+                            (item.name_en || item.name || item.name_ro);
+                        const itemDesc = currentLang === 'ro' ?
+                            (item.desc_ro || item.description || item.desc_en) :
+                            (item.desc_en || item.description_en || item.desc_ro);
+
+                        return itemName.toLowerCase().includes(searchLower) ||
+                               itemDesc.toLowerCase().includes(searchLower);
+                    }
+                    return true;
+                });
+
+                if (filteredItems.length === 0) return '';
+
+                return `
+                    <div class="category-section">
+                        <h2 class="category-title">${categoryName}</h2>
+                        <div class="menu-grid">
+                            ${filteredItems.map(item => {
+                                const isAvailable = item.available !== false;
+                                const itemName = currentLang === 'ro' ?
+                                    (item.name_ro || item.name || item.name_en || 'Unnamed') :
+                                    (item.name_en || item.name || item.name_ro || 'Unnamed');
+                                const itemDesc = currentLang === 'ro' ?
+                                    (item.desc_ro || item.description || item.desc_en || '') :
+                                    (item.desc_en || item.description_en || item.desc_ro || '');
+                                const imagePath = item.image || `assets/images/placeholder.jpg`;
+
+                                // Create safe item object for cart
+                                const safeItem = {
+                                    id: item.id,
+                                    name: item.name_ro || item.name,
+                                    name_en: item.name_en || item.name,
+                                    price: item.price || 0
+                                };
+
+                                return `
+                                    <div class="menu-item ${!isAvailable ? 'unavailable' : ''}">
+                                        ${!isAvailable ? `<div class="unavailable-badge">${translations[currentLang].unavailable}</div>` : ''}
+                                        <img src="${imagePath}" alt="${itemName}" class="item-image" onerror="this.style.display='none'">
+                                        <div class="item-content">
+                                            <div class="item-header">
+                                                <h3 class="item-name">${itemName}</h3>
+                                                <span class="item-price">${item.price || 0} RON</span>
+                                            </div>
+                                            <p class="item-description">${itemDesc}</p>
+                                            ${isAvailable ? `
+                                                <button class="add-to-cart-btn" onclick='addToCart(${JSON.stringify(safeItem).replace(/'/g, "&apos;")})'>
+                                                    <i class="fas fa-plus"></i>
+                                                    <span>${translations[currentLang].add_to_cart}</span>
+                                                </button>
+                                            ` : ''}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Cart functions
+        function addToCart(item) {
+            const existingItem = cart.find(cartItem => cartItem.id === item.id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...item,
+                    quantity: 1
+                });
+            }
+
+            saveCartToLocalStorage();
+            updateCartUI();
+            showToast(`${currentLang === 'ro' ? (item.name || item.name_ro) : (item.name_en || item.name)} - ${translations[currentLang].add_to_cart}`);
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            cartCount.textContent = totalItems;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>${translations[currentLang].cart_empty}</p>
+                    </div>
+                `;
+            } else {
+                cartItems.innerHTML = cart.map(item => {
+                    const itemName = currentLang === 'ro' ?
+                        (item.name || item.name_ro) :
+                        (item.name_en || item.name);
+
+                    return `
+                        <div class="cart-item">
+                            <h4 class="cart-item-name">${itemName}</h4>
+                            <div class="cart-item-controls">
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
+                                    <span class="quantity">${item.quantity}</span>
+                                    <button class="quantity-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+                                </div>
+                                <span class="cart-item-price">${item.price * item.quantity} RON</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            cartTotal.textContent = `${totalPrice} RON`;
+        }
+
+        function updateQuantity(itemId, change) {
+            const item = cart.find(cartItem => cartItem.id === itemId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(cartItem => cartItem.id !== itemId);
+                }
+                saveCartToLocalStorage();
+                updateCartUI();
+            }
+        }
+
+        // Call waiter - FIXED WITH FIREBASE SYNC
+        async function callWaiter() {
+            if (cart.length === 0) return;
+
+            const order = {
+                id: `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                tableNumber: tableNumber || 'N/A',
+                items: cart.map(item => ({
+                    name: item.name || item.name_ro,
+                    name_ro: item.name || item.name_ro,
+                    name_en: item.name_en || item.name,
+                    quantity: item.quantity,
+                    price: item.price
+                })),
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                timestamp: new Date().toISOString(),
+                status: 'pending'
+            };
+
+            try {
+                // Try to save to Firebase first (if initialized)
+                if (typeof db !== 'undefined' && db) {
+                    await db.collection('orders').add(order);
+                    console.log('✅ Order sent to Firebase');
+                }
+            } catch (error) {
+                console.log('Firebase not available, using localStorage');
+            }
+
+            // Always save to localStorage as backup
+            let pendingOrders = JSON.parse(localStorage.getItem('pendingOrders') || '[]');
+            pendingOrders.push(order);
+            localStorage.setItem('pendingOrders', JSON.stringify(pendingOrders));
+
+            showToast(translations[currentLang].order_sent, 'success');
+            cart = [];
+            saveCartToLocalStorage();
+            updateCartUI();
+            closeCart();
+        }
+
+        // LocalStorage functions
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function loadCartFromLocalStorage() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartUI();
+            }
+        }
+
+        // Language switching
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update translations
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update placeholders
+            document.getElementById('searchInput').placeholder = translations[lang].search_placeholder;
+
+            // Update table info
+            if (tableNumber) {
+                document.getElementById('tableNumber').textContent = `${translations[lang].table} ${tableNumber}`;
+            }
+
+            // Refresh display
+            displayCategories();
+            const activeCategory = document.querySelector('.category-btn.active');
+            if (activeCategory) {
+                displayMenuItems(activeCategory.dataset.category);
+            }
+            updateCartUI();
+        }
+
+        // Initialize language
+        function initializeLanguage() {
+            const savedLang = localStorage.getItem('language') || 'ro';
+            switchLanguage(savedLang);
+        }
+
+        // Cart sidebar controls
+        function openCart() {
+            document.getElementById('cartSidebar').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast show ${type}`;
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Show/hide loading
+        function showLoading(show) {
+            const menuSection = document.getElementById('menuSection');
+            if (show) {
+                menuSection.innerHTML = `
+                    <div class="loading active">
+                        <div class="loading-spinner"></div>
+                        <p>${translations[currentLang].loading}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Handle search
+        function handleSearch(e) {
+            const searchTerm = e.target.value;
+            const activeCategory = document.querySelector('.category-btn.active');
+            displayMenuItems(activeCategory ? activeCategory.dataset.category : null, searchTerm);
+        }
+
+        // Initialize event listeners
+        function initializeEventListeners() {
+            // Search input
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+
+            // Language switcher
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const lang = e.currentTarget.getAttribute('data-lang');
+                    switchLanguage(lang);
+                });
+            });
+
+            // Cart controls
+            document.getElementById('cartToggle').addEventListener('click', openCart);
+            document.getElementById('closeCart').addEventListener('click', closeCart);
+            document.getElementById('overlay').addEventListener('click', closeCart);
+            document.getElementById('callWaiterBtn').addEventListener('click', callWaiter);
+        }
+    </script>
+</body>
+</html>
