@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 הגדרת אבטחה מתקדמת - Nuba Restaurant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #d4af37;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .security-alert {
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid #ff4444;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .section {
+            background: rgba(0, 0, 0, 0.5);
+            border-right: 4px solid #d4af37;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #d4af37;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        button.danger {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: none;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4caf50;
+            color: #4caf50;
+        }
+
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+            color: #f44336;
+        }
+
+        .info {
+            background: rgba(33, 150, 243, 0.2);
+            border: 1px solid #2196f3;
+            color: #2196f3;
+        }
+
+        .security-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .security-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+
+        .security-option input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .ip-list {
+            background: #000;
+            padding: 15px;
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+
+        .ip-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            margin: 5px 0;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 5px;
+        }
+
+        .warning {
+            background: rgba(255, 152, 0, 0.2);
+            border: 1px solid #ff9800;
+            color: #ff9800;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 הגדרת אבטחה מתקדמת למערכת הניהול</h1>
+
+        <div class="security-alert">
+            <h3>⚠️ אזהרה ביטחונית</h3>
+            <p>הסיסמה הנוכחית שלך (nuba2024) חשופה! צריך לשנות אותה דחוף.</p>
+        </div>
+
+        <!-- שינוי סיסמה -->
+        <div class="section">
+            <h2>🔑 שינוי סיסמת מנהל</h2>
+            <input type="password" id="currentPassword" placeholder="סיסמה נוכחית">
+            <input type="password" id="newPassword" placeholder="סיסמה חדשה (מינימום 8 תווים)">
+            <input type="password" id="confirmPassword" placeholder="אימות סיסמה חדשה">
+            <button onclick="changePassword()">שנה סיסמה</button>
+            <div id="passwordStatus" class="status"></div>
+        </div>
+
+        <!-- הגדרות אבטחה -->
+        <div class="section">
+            <h2>🛡️ הגדרות אבטחה מתקדמות</h2>
+            <div class="security-options">
+                <div class="security-option">
+                    <input type="checkbox" id="enable2FA" checked>
+                    <label>הפעל אימות דו-שלבי (2FA)</label>
+                </div>
+                <div class="security-option">
+                    <input type="checkbox" id="enableIPWhitelist" checked>
+                    <label>הגבל גישה לכתובות IP מאושרות בלבד</label>
+                </div>
+                <div class="security-option">
+                    <input type="checkbox" id="enableLoginAttempts" checked>
+                    <label>חסום אחרי 3 ניסיונות כושלים</label>
+                </div>
+                <div class="security-option">
+                    <input type="checkbox" id="enableSessionTimeout" checked>
+                    <label>התנתק אוטומטית אחרי 30 דקות</label>
+                </div>
+                <div class="security-option">
+                    <input type="checkbox" id="enableActivityLog" checked>
+                    <label>תיעוד כל הפעילויות בלוג</label>
+                </div>
+            </div>
+            <button onclick="applySecuritySettings()">החל הגדרות אבטחה</button>
+            <div id="securityStatus" class="status"></div>
+        </div>
+
+        <!-- הוספת IP מורשה -->
+        <div class="section">
+            <h2>📍 ניהול כתובות IP מורשות</h2>
+            <input type="text" id="ipAddress" placeholder="הכנס כתובת IP (לדוגמה: 192.168.1.1)">
+            <button onclick="addIPAddress()">הוסף IP מורשה</button>
+            <div class="ip-list" id="ipList">
+                <!-- רשימת IP יופיעו כאן -->
+            </div>
+        </div>
+
+        <!-- יצירת קוד גישה חד פעמי -->
+        <div class="section">
+            <h2>🎫 קודי גישה חד-פעמיים</h2>
+            <p>צור קוד גישה זמני למישהו שצריך גישה חד-פעמית</p>
+            <button onclick="generateOneTimeCode()">צור קוד חד-פעמי</button>
+            <div id="oneTimeCode" class="status"></div>
+        </div>
+
+        <!-- לוג פעילות -->
+        <div class="section">
+            <h2>📊 לוג פעילות אחרון</h2>
+            <div class="ip-list" id="activityLog">
+                <!-- לוג פעילות יופיע כאן -->
+            </div>
+        </div>
+
+        <div class="warning">
+            <strong>חשוב:</strong> אחרי הגדרת האבטחה, רק אנשים מורשים יוכלו לגשת לדף הניהול.
+        </div>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC8CoiOsMhq7Zn3iDrfSHfdzHvEZKGZ-Tk",
+            authDomain: "nuba-restaurant.firebaseapp.com",
+            projectId: "nuba-restaurant",
+            storageBucket: "nuba-restaurant.firebasestorage.app",
+            messagingSenderId: "1084628930920",
+            appId: "1:1084628930920:web:68f29b63b0bd65ccc406dd"
+        };
+
+        let db, auth;
+
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            db = firebase.firestore();
+            auth = firebase.auth();
+            console.log('✅ Firebase initialized');
+        } catch (error) {
+            console.error('Firebase error:', error);
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            loadSecuritySettings();
+            loadActivityLog();
+            loadIPWhitelist();
+        });
+
+        // Change password
+        async function changePassword() {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                showStatus('passwordStatus', 'מלא את כל השדות', 'error');
+                return;
+            }
+
+            if (newPassword.length < 8) {
+                showStatus('passwordStatus', 'הסיסמה חייבת להכיל לפחות 8 תווים', 'error');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                showStatus('passwordStatus', 'הסיסמאות לא תואמות', 'error');
+                return;
+            }
+
+            // Check if contains numbers and letters
+            if (!/(?=.*[0-9])(?=.*[a-zA-Z])/.test(newPassword)) {
+                showStatus('passwordStatus', 'הסיסמה חייבת להכיל אותיות ומספרים', 'error');
+                return;
+            }
+
+            try {
+                // Save encrypted password to Firebase
+                const hashedPassword = await hashPassword(newPassword);
+
+                await db.collection('settings').doc('security').set({
+                    adminPassword: hashedPassword,
+                    passwordUpdated: new Date().toISOString(),
+                    passwordStrength: calculatePasswordStrength(newPassword)
+                }, { merge: true });
+
+                showStatus('passwordStatus', '✅ הסיסמה שונתה בהצלחה!', 'success');
+
+                // Clear fields
+                document.getElementById('currentPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmPassword').value = '';
+
+                // Log activity
+                await logActivity('Password changed');
+
+            } catch (error) {
+                showStatus('passwordStatus', 'שגיאה: ' + error.message, 'error');
+            }
+        }
+
+        // Apply security settings
+        async function applySecuritySettings() {
+            try {
+                const settings = {
+                    twoFactorAuth: document.getElementById('enable2FA').checked,
+                    ipWhitelist: document.getElementById('enableIPWhitelist').checked,
+                    loginAttemptLimit: document.getElementById('enableLoginAttempts').checked,
+                    sessionTimeout: document.getElementById('enableSessionTimeout').checked,
+                    activityLog: document.getElementById('enableActivityLog').checked,
+                    maxLoginAttempts: 3,
+                    sessionTimeoutMinutes: 30,
+                    updated: new Date().toISOString()
+                };
+
+                await db.collection('settings').doc('security').set(settings, { merge: true });
+
+                // If 2FA is enabled, generate secret
+                if (settings.twoFactorAuth) {
+                    const secret = generateSecret();
+                    await db.collection('settings').doc('security').update({
+                        twoFactorSecret: secret
+                    });
+                }
+
+                showStatus('securityStatus', '✅ הגדרות אבטחה נשמרו!', 'success');
+                await logActivity('Security settings updated');
+
+            } catch (error) {
+                showStatus('securityStatus', 'שגיאה: ' + error.message, 'error');
+            }
+        }
+
+        // Add IP address to whitelist
+        async function addIPAddress() {
+            const ipAddress = document.getElementById('ipAddress').value;
+
+            if (!ipAddress) {
+                alert('הכנס כתובת IP');
+                return;
+            }
+
+            // Validate IP format
+            const ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+            if (!ipRegex.test(ipAddress)) {
+                alert('כתובת IP לא תקינה');
+                return;
+            }
+
+            try {
+                // Get current whitelist
+                const doc = await db.collection('settings').doc('ipWhitelist').get();
+                let whitelist = doc.exists ? doc.data().addresses || [] : [];
+
+                // Add new IP if not exists
+                if (!whitelist.includes(ipAddress)) {
+                    whitelist.push(ipAddress);
+
+                    await db.collection('settings').doc('ipWhitelist').set({
+                        addresses: whitelist,
+                        updated: new Date().toISOString()
+                    });
+
+                    loadIPWhitelist();
+                    document.getElementById('ipAddress').value = '';
+                    await logActivity(`IP added to whitelist: ${ipAddress}`);
+                } else {
+                    alert('כתובת IP כבר קיימת');
+                }
+
+            } catch (error) {
+                alert('שגיאה: ' + error.message);
+            }
+        }
+
+        // Generate one-time code
+        async function generateOneTimeCode() {
+            try {
+                const code = Math.random().toString(36).substr(2, 10).toUpperCase();
+                const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+
+                await db.collection('oneTimeCodes').doc(code).set({
+                    created: new Date().toISOString(),
+                    expires: expiresAt.toISOString(),
+                    used: false
+                });
+
+                showStatus('oneTimeCode', `קוד חד-פעמי: ${code} (תקף לשעה)`, 'success');
+                await logActivity('One-time code generated');
+
+            } catch (error) {
+                showStatus('oneTimeCode', 'שגיאה: ' + error.message, 'error');
+            }
+        }
+
+        // Helper functions
+        async function hashPassword(password) {
+            // Simple hash for demo - in production use proper encryption
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password + 'nuba-salt-2024');
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.length >= 12) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            return strength;
+        }
+
+        function generateSecret() {
+            return Math.random().toString(36).substr(2, 16).toUpperCase();
+        }
+
+        function showStatus(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.className = `status show ${type}`;
+            element.textContent = message;
+        }
+
+        async function logActivity(action) {
+            try {
+                await db.collection('activityLog').add({
+                    action: action,
+                    timestamp: new Date().toISOString(),
+                    ip: await getClientIP(),
+                    userAgent: navigator.userAgent
+                });
+            } catch (error) {
+                console.error('Log error:', error);
+            }
+        }
+
+        async function getClientIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                return 'Unknown';
+            }
+        }
+
+        async function loadSecuritySettings() {
+            try {
+                const doc = await db.collection('settings').doc('security').get();
+                if (doc.exists) {
+                    const settings = doc.data();
+                    document.getElementById('enable2FA').checked = settings.twoFactorAuth || false;
+                    document.getElementById('enableIPWhitelist').checked = settings.ipWhitelist || false;
+                    document.getElementById('enableLoginAttempts').checked = settings.loginAttemptLimit || false;
+                    document.getElementById('enableSessionTimeout').checked = settings.sessionTimeout || false;
+                    document.getElementById('enableActivityLog').checked = settings.activityLog || false;
+                }
+            } catch (error) {
+                console.error('Load settings error:', error);
+            }
+        }
+
+        async function loadActivityLog() {
+            try {
+                const snapshot = await db.collection('activityLog')
+                    .orderBy('timestamp', 'desc')
+                    .limit(10)
+                    .get();
+
+                const logDiv = document.getElementById('activityLog');
+                logDiv.innerHTML = '';
+
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const date = new Date(data.timestamp).toLocaleString('he-IL');
+                    logDiv.innerHTML += `
+                        <div class="ip-item">
+                            <span>${data.action}</span>
+                            <span>${date}</span>
+                        </div>
+                    `;
+                });
+
+                if (snapshot.empty) {
+                    logDiv.innerHTML = '<div>אין פעילות עדיין</div>';
+                }
+
+            } catch (error) {
+                console.error('Load log error:', error);
+            }
+        }
+
+        async function loadIPWhitelist() {
+            try {
+                const doc = await db.collection('settings').doc('ipWhitelist').get();
+                const listDiv = document.getElementById('ipList');
+
+                if (doc.exists && doc.data().addresses) {
+                    listDiv.innerHTML = '';
+                    doc.data().addresses.forEach(ip => {
+                        listDiv.innerHTML += `
+                            <div class="ip-item">
+                                <span>${ip}</span>
+                                <button onclick="removeIP('${ip}')" style="width: auto; padding: 5px 10px;">הסר</button>
+                            </div>
+                        `;
+                    });
+                } else {
+                    // Add current IP by default
+                    const currentIP = await getClientIP();
+                    listDiv.innerHTML = `
+                        <div class="ip-item">
+                            <span>${currentIP} (הנוכחי שלך)</span>
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                console.error('Load IP list error:', error);
+            }
+        }
+
+        async function removeIP(ip) {
+            if (!confirm(`להסיר את ${ip}?`)) return;
+
+            try {
+                const doc = await db.collection('settings').doc('ipWhitelist').get();
+                if (doc.exists) {
+                    let whitelist = doc.data().addresses || [];
+                    whitelist = whitelist.filter(addr => addr !== ip);
+
+                    await db.collection('settings').doc('ipWhitelist').set({
+                        addresses: whitelist,
+                        updated: new Date().toISOString()
+                    });
+
+                    loadIPWhitelist();
+                    await logActivity(`IP removed from whitelist: ${ip}`);
+                }
+            } catch (error) {
+                alert('שגיאה: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
