@@ -1,0 +1,46 @@
+/* TEMPORARY CSS TO HIDE CART AND CALL WAITER BUTTONS */
+
+/* Hide cart toggle button */
+.cart-toggle {
+    display: none !important;
+}
+
+/* Hide cart widget */
+.cart-widget {
+    display: none !important;
+}
+
+/* Hide add to cart buttons */
+.add-to-cart-btn {
+    display: none !important;
+}
+
+/* Hide call waiter button */
+.call-waiter-btn {
+    display: none !important;
+}
+
+/* Hide cart sidebar */
+.cart-sidebar {
+    display: none !important;
+}
+
+/* Hide cart total in sidebar */
+.cart-total {
+    display: none !important;
+}
+
+/* Hide empty cart message */
+.cart-empty {
+    display: none !important;
+}
+
+/* Hide all cart related elements */
+#cartWidget,
+#cartSidebar,
+#cartItems,
+#cartTotal,
+[onclick*="addToCart"],
+[onclick*="callWaiter"] {
+    display: none !important;
+}

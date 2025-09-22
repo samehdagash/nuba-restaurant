@@ -1,0 +1,33 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="60" fill="#000000"/>
+
+  <!-- Gold border -->
+  <rect x="2" y="2" width="196" height="56" fill="none" stroke="#d4af37" stroke-width="2"/>
+
+  <!-- NUBA text -->
+  <text x="100" y="30"
+        font-family="Georgia, serif"
+        font-size="28"
+        font-weight="bold"
+        fill="#d4af37"
+        text-anchor="middle"
+        dominant-baseline="middle">
+    NUBA
+  </text>
+
+  <!-- PALAS text -->
+  <text x="100" y="45"
+        font-family="Georgia, serif"
+        font-size="14"
+        fill="#d4af37"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        letter-spacing="3">
+    PALAS
+  </text>
+
+  <!-- Decorative elements -->
+  <line x1="40" y1="30" x2="60" y2="30" stroke="#d4af37" stroke-width="1"/>
+  <line x1="140" y1="30" x2="160" y2="30" stroke="#d4af37" stroke-width="1"/>
+</svg>
